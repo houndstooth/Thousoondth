@@ -1,3 +1,12 @@
+// do a "mirror image" across the main diagonal function for elegant simplicity
+// do a "wrap around" over the edges so see if you can get recursive formula to
+//    capture the stuff on the left and bottom edge using the same stuff for the middle
+// be careful when you're going back and forth between scaling down to the left and
+//    down to the up that you don't create an infinite loop... perhaps best to have it
+//    inside a for loop that alternates like the others do... esp since it itself
+//    alternates between whether it iterates or doesn't
+
+
 var canvas = document.querySelector('.canvas');
 var ctx = canvas.getContext('2d');
 
@@ -7,7 +16,7 @@ HEIGHT = WIDTH;
 canvas.width = WIDTH;
 canvas.height = HEIGHT;
 
-RECURSIVE_DEPTH = 10;
+RECURSIVE_DEPTH = 25;
 
 ctx.lineWidth = 1;
 
@@ -53,6 +62,14 @@ for (var i = 0; i < RECURSIVE_DEPTH; i++) {
       ],
       true
     );
+    drawRecursiveTopOfTooth(
+      (i / 2) + 1,
+      [
+        -2,
+        Math.pow(2, (i / 2) + 1) - 2
+      ],
+      false
+    );
   } else {
     drawSquare(
       Math.floor(i / 2) + 2,
@@ -78,10 +95,11 @@ for (var i = 0; i < RECURSIVE_DEPTH; i++) {
       ],
       false
     );
-    console.log("drawing recursive top of tooth");
-    console.log("at resolution " + (Math.floor(i / 2) + 2));
-    console.log("and x: " + 2);
-    console.log("and y: " + (Math.pow(2, Math.floor(i / 2) + 2) - 3));
+
+    // console.log("drawing recursive top of tooth");
+    // console.log("at resolution " + (Math.floor(i / 2) + 2));
+    // console.log("and x: " + 2);
+    // console.log("and y: " + (Math.pow(2, Math.floor(i / 2) + 2) - 3));
   }
 }
 
@@ -103,6 +121,16 @@ for (var i = 0; i < RECURSIVE_DEPTH; i++) {
 //   }
 // }
 
+// function mirrorImage(fn, resolutionLayer, position, white) {
+//   console.log(fn);
+//   position =
+//   fn(resolutionLayer, position, white);
+// }
+
+// function mirrored(position) {
+//   return Math.pow(2, resolutionLayer) - position;
+// }
+
 function drawRecursiveBottomRightTriangle(resolutionLayer, position, white) {
   for (var i = 0; i < RECURSIVE_DEPTH; i++) {
     drawBottomRightTriangle(
@@ -118,28 +146,63 @@ function drawRecursiveBottomRightTriangle(resolutionLayer, position, white) {
 
 function drawDoppleRecursiveBottomRightTriangle(resolutionLayer, position, white) {
   for (var i = 0; i < RECURSIVE_DEPTH; i++) {
+    drawBottomRightTriangle(
+      i + resolutionLayer,
+      [
+        (position[0] + 1) * Math.pow(2, i) - 1 ,
+        (position[1] + 1) * Math.pow(2, i) - 1
+      ],
+      i % 2 == white ? 0 : 1
+    );
+
     if (i % 2 == 0) {
-      for (var j = 0; j < RECURSIVE_DEPTH; j++) {
-        drawBottomRightTriangle(
-          i + resolutionLayer,
-          [
-            (position[0] + 1) * Math.pow(2, i) - 1 ,
-            (position[1] + 1) * Math.pow(2, i) - 1
-          ],
-          i % 2 == white ? 0 : 1
-        );
-      }
-    } else {
-      drawBottomRightTriangle(
-        i + resolutionLayer,
+      drawRecursiveBottomRightTriangle(
+        i + resolutionLayer + 2,
         [
-          (position[0] + 1) * Math.pow(2, i) - 1 ,
-          (position[1] + 1) * Math.pow(2, i) - 1
+          (position[0] + 1) * Math.pow(2, i + 2) - 1 ,
+          (position[1] + .5) * Math.pow(2, i + 2) - 1
         ],
-        i % 2 == white ? 0 : 1
+        i % 2 == white ? 1 : 0
       );
+      drawRecursiveBottomRightTriangle(
+        i + resolutionLayer + 3,
+        [
+          (position[0] + 1) * Math.pow(2, i + 3) - 1 ,
+          (position[1] + .25) * Math.pow(2, i + 3) - 1
+        ],
+        i % 2 == white ? 1 : 0
+      );
+      drawRecursiveBottomRightTriangle(
+        i + resolutionLayer + 4,
+        [
+          (position[0] + 1) * Math.pow(2, i + 4) - 1 ,
+          (position[1] + .125) * Math.pow(2, i + 4) - 1
+        ],
+        i % 2 == white ? 1 : 0
+      );
+      drawRecursiveBottomRightTriangle(
+        i + resolutionLayer + 5,
+        [
+          (position[0] + 1) * Math.pow(2, i + 5) - 1 ,
+          (position[1] + .0625) * Math.pow(2, i + 5) - 1
+        ],
+        i % 2 == white ? 1 : 0
+      );
+
+
+      // for (var j = 0; j < RECURSIVE_DEPTH; j++) {
+      //   drawBottomRightTriangle(
+      //     i + resolutionLayer + 1 + j,
+      //     [
+      //       (position[0] + 1 - Math.pow(2, j)) * Math.pow(2, i) - 1 ,
+      //       (position[1] + 1) * Math.pow(2, i) - 1
+      //     ],
+      //     i % 2 == white ? 0 : 1
+      //   );
+      // }
     }
   }
+
 }
 
 
@@ -191,6 +254,7 @@ function drawRecursiveTopOfTooth(resolutionLayer, position, white) {
       white
     );
   }
+
 };
 
 
@@ -205,6 +269,7 @@ function drawDoppleRecursiveTopOfTooth(resolutionLayer, position, white) {
       white
     );
   }
+
 };
 
 
@@ -221,7 +286,8 @@ function drawDoppleRecursiveTopOfTooth(resolutionLayer, position, white) {
 
 
 
-function drawTopLeftTriangle(resolutionLayer, position, white) {
+function drawTopLeftTriangle(resolutionLayer, position, white, drawMirror) {
+  drawMirror = typeof drawMirror !== 'undefined' ? drawMirror : true;
   ctx.fillStyle = white ? "#fff" : "#000"
 
   var resolution = Math.pow(2, resolutionLayer);
@@ -240,9 +306,18 @@ function drawTopLeftTriangle(resolutionLayer, position, white) {
   ctx.lineTo(topLeftX,        topLeftY + unit );
   ctx.closePath();
   ctx.fill();
+  if (drawMirror) {
+    var mirroredPosition = [];
+    mirroredPosition[0] = Math.pow(2, resolutionLayer) - position[1] - 1;
+    mirroredPosition[1] = Math.pow(2, resolutionLayer) - position[0] - 1;
+    drawBottomRightTriangle(resolutionLayer, mirroredPosition, white, false);
+  }
+
+
 }
 
-function drawBottomRightTriangle(resolutionLayer, position, white) {
+function drawBottomRightTriangle(resolutionLayer, position, white, drawMirror) {
+  drawMirror = typeof drawMirror !== 'undefined' ? drawMirror : true;
   ctx.fillStyle = white ? "#fff" : "#000"
 
   var resolution = Math.pow(2, resolutionLayer);
@@ -261,6 +336,13 @@ function drawBottomRightTriangle(resolutionLayer, position, white) {
   ctx.lineTo(topLeftX,        topLeftY + unit );
   ctx.closePath();
   ctx.fill();
+  // mirrorImage(drawTopLeftTriangle, resolutionLayer, position, white);
+  if (drawMirror) {
+    var mirroredPosition = [];
+    mirroredPosition[0] = Math.pow(2, resolutionLayer) - position[1] - 1;
+    mirroredPosition[1] = Math.pow(2, resolutionLayer) - position[0] - 1;
+    drawTopLeftTriangle(resolutionLayer, mirroredPosition, white, false);
+  }
 }
 
 function drawSquare(resolutionLayer, position, white) {
@@ -283,3 +365,14 @@ function drawSquare(resolutionLayer, position, white) {
   ctx.closePath();
   ctx.fill();
 }
+
+
+
+drawRecursiveTopOfTooth(
+  1,
+  [
+    0,
+    2
+  ],
+  true
+);
