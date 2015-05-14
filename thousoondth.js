@@ -6,7 +6,7 @@ canvas.width = WIDTH;
 canvas.height = HEIGHT;
 ctx.lineWidth = 1;
 
-RECURSIVE_DEPTH = 25;
+RECURSIVE_DEPTH = 15;
 
 //LEVEL 1
 function drawRecursiveTriangle(resolutionLayer, position, white) {
@@ -60,6 +60,36 @@ function drawRecursiveTopOfTooth(resolutionLayer, position, white) {
       ],
       white
     );
+  }
+};
+
+//????
+function drawRecursiveTopOfToothWithEdgeOfWhiteSpace(resolutionLayer, position, white) {
+  for (var i = 0; i < RECURSIVE_DEPTH; i++) {
+    drawDoppleRecursiveTriangle(
+      i + 1 + resolutionLayer,
+      [
+        position[0] * Math.pow(2, i) + Math.pow(2, i + 1) + 1,
+        position[1] * Math.pow(2, i + 1) - 1
+      ],
+      white
+    );
+    drawTriangle(
+      i + 1 + resolutionLayer,
+      [
+        position[0] * Math.pow(2, i) + Math.pow(2, i + 1) + 1,
+        position[1] * Math.pow(2, i + 1) - 2
+      ],
+      !white
+    );
+    drawSquare(
+      i + 1 + resolutionLayer,
+      [
+        position[0] * Math.pow(2, i) + Math.pow(2, i + 1) ,
+        position[1] * Math.pow(2, i + 1) - 2
+      ],
+      white
+    )
   }
 };
 
