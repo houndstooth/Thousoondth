@@ -1,3 +1,7 @@
+function drawPlainTriangle(resolutionLayer, position, white) {
+  drawTriangle(resolutionLayer, position, white)
+}
+
 function drawTriangle(resolutionLayer, position, white, subTriangle) {
 
   // set color for main triangles
@@ -57,18 +61,18 @@ function drawTriangle(resolutionLayer, position, white, subTriangle) {
 
   // houndstooth fractaling
 
-  subTriangle = typeof subTriangle !== 'undefined' ? subTriangle : false;
-  if (!subTriangle) {
-    drawTriangle(
-      resolutionLayer + 2,
-      [
-        position[0] * Math.pow(2, resolutionLayer) + 1,
-        position[1] * Math.pow(2, resolutionLayer) + 2
-      ],
-      !white,
-      true
-    );
-  }
+  // subTriangle = typeof subTriangle !== 'undefined' ? subTriangle : false;
+  // if (!subTriangle) {
+  //   drawTriangle(
+  //     resolutionLayer + 2,
+  //     [
+  //       position[0] * Math.pow(2, resolutionLayer) + 1,
+  //       position[1] * Math.pow(2, resolutionLayer) + 2
+  //     ],
+  //     !white,
+  //     true
+  //   );
+  // }
 };
 
 function drawSquare(resolutionLayer, position, white) {

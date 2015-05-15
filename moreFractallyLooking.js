@@ -25,8 +25,34 @@ ORIGINAL_BOTTOM_RIGHT_GRID = [
   [ false, false, true,  false ]
 ];
 
-var topLeftGrid = ORIGINAL_TOP_LEFT_GRID;
-var bottomRightGrid = ORIGINAL_BOTTOM_RIGHT_GRID;
+
+
+
+//
+// var topLeftGrid = ORIGINAL_TOP_LEFT_GRID;
+// var bottomRightGrid = ORIGINAL_BOTTOM_RIGHT_GRID;
+
+var topLeftGrid = [
+  [ true,  true,  true,  true,  true,  true,  true,  true  ],
+  [ true,  true,  true,  true,  true,  true,  true,  true  ],
+  [ true,  true,  true,  true,  true,  true,  true,  true  ],
+  [ true,  true,  true,  false,  true,  true,  true,  true  ],
+  [ true,  true,  false, false, true,  false,  true,  true  ],
+  [ true,  true,  false, false, false,  true,  true,  true  ],
+  [ true,  true,  false,  true,  true,  true,  true,  true  ],
+  [ true,  true,  true,  true,  true,  true,  true,  true  ]
+];
+
+var bottomRightGrid = [
+  [ true,  true,  true,  true,  true,  true,  true,  true  ],
+  [ true,  true,  true,  true,  true,  true,  true,  true  ],
+  [ true,  true,  true,  false,  true,  true,  true,  true  ],
+  [ true,  true,  false,  true,  true,  true,  true,  true  ],
+  [ true,  true,  false, false, false,  true,  true,  true  ],
+  [ true,  false,  false, false, true,  true,  true,  true  ],
+  [ true,  true,  true,  true,  true,  true,  true,  true  ],
+  [ true,  true,  true,  true,  true,  true,  true,  true  ]
+];
 
 var actualHoundstoothTopLeftGrid = ORIGINAL_TOP_LEFT_GRID;
 var actualHoundstoothBottomRightGrid = ORIGINAL_BOTTOM_RIGHT_GRID;
@@ -35,7 +61,12 @@ var newTopLeftGrid, newBottomRightGrid;
 
 var curLayer = 1;
 
+//this is here b/c i decided to up the res of the seed of the fractal
+// but was too lazy to rewrite the seed of normal houndstooth at that scale
+convertActualHoundstoothGridsToNextLayer();
+
 // EXECUTE
+
 
 // console.log(topLeftGrid);
 // convertGridsToNextLayer();
@@ -52,6 +83,8 @@ var curLayer = 1;
 // console.log(actualHoundstoothTopLeftGrid);
 
 // FUNCTIONS
+
+
 
 
 function renderReality() {
@@ -87,6 +120,19 @@ function doSomeFractalMagic() {
   console.log(actualHoundstoothTopLeftGrid);
   console.log("actual houndstooth bottom right grid: ");
   console.log(actualHoundstoothBottomRightGrid);
+
+  convertGridsToNextLayer();
+  console.log("fractal reality top left grid: ");
+  console.log(topLeftGrid);
+  console.log("fractal reality bottom right grid: ");
+  console.log(bottomRightGrid);
+  convertActualHoundstoothGridsToNextLayer();
+  console.log("actual houndstooth top left grid: ");
+  console.log(actualHoundstoothTopLeftGrid);
+  console.log("actual houndstooth bottom right grid: ");
+  console.log(actualHoundstoothBottomRightGrid);
+
+
   var resolutionLayer = Math.log2(actualHoundstoothTopLeftGrid.length);  //MINUS ONE?!?!?!?!
   //check blacks
   for (var i = 2; i < topLeftGrid.length; i = i + 4 ) {
@@ -97,9 +143,12 @@ function doSomeFractalMagic() {
       //   ///.....so i actually have to create a houndstooth pattern for each layer, and
       //   ///also not coutn the white tris, but coutn the MATCHES between it and that...
       // }
-      if (numMatches(i,j) >= 8 || numMatches(i,j) == 0) {
+      if (numMatches(i,j) >= 8) {
         // drawHoundstooth(resolutionLayer - 1, [i,j], false)
-        flipGridTrisToHoundstooth(resolutionLayer - 1, [i,j], false);
+        if (thisHoundstoothWouldntSplitUpTheMainOne(i,j)) {
+          flipGridTrisToHoundstooth(resolutionLayer - 1, [i,j], false);
+        }
+
       }
     }
   }
@@ -112,12 +161,18 @@ function doSomeFractalMagic() {
       //   ///.....so i actually have to create a houndstooth pattern for each layer, and
       //   ///also not coutn the white tris, but coutn the MATCHES between it and that...
       // }
-      if (numMatches(i,j) >= 8 || numMatches(i,j) == 0) {
+      if (numMatches(i,j) >= 8) {
         // drawHoundstooth(resolutionLayer - 1, [i,j], true)
-        flipGridTrisToHoundstooth(resolutionLayer - 1, [i,j], true);
+        if (thisHoundstoothWouldntSplitUpTheMainOne(i,j)) {
+          flipGridTrisToHoundstooth(resolutionLayer - 1, [i,j], true);
+        }
       }
     }
   }
+}
+
+function thisHoundstoothWouldntSplitUpTheMainOne(i,j) {
+  return true;
 }
 
 function flipGridTrisToHoundstooth(resolutionLayer, position, white) {
