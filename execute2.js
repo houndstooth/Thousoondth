@@ -1,4 +1,4 @@
-for (var i = 0; i < ITERATIVE_DEPTH; i++ ) {
+for (var i = 0; i < SHRINKING_DEPTH; i++ ) {
   if (i % 2 == 0) {
     drawSquare(
       (i / 2) + 1,

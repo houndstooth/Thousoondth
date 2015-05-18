@@ -6,7 +6,8 @@ canvas.width = WIDTH;
 canvas.height = HEIGHT;
 ctx.lineWidth = 1;
 RECURSIVE_DEPTH = 5;
-ITERATIVE_DEPTH = 6;
+ITERATIVE_DEPTH = 5;
+SHRINKING_DEPTH = 15;
 
 function drawMagicTriangle(resolutionLayer, position, white, recursiveStep) {
   drawPlainTriangle(resolutionLayer, position, white, recursiveStep);
