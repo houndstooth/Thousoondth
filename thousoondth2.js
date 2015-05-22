@@ -7,10 +7,10 @@ canvas.height = HEIGHT;
 ctx.lineWidth = 1;
 RECURSIVE_DEPTH = 5;
 ITERATIVE_DEPTH = 5;
-SHRINKING_DEPTH = 15;
+SHRINKING_DEPTH = 10;
 
 function drawMagicTriangle(resolutionLayer, position, white, recursiveStep) {
-  drawPlainTriangle(resolutionLayer, position, white, recursiveStep);
+  drawRecursiveTriangle(resolutionLayer, position, white, recursiveStep);
   if (recursiveStep < RECURSIVE_DEPTH) {
     if (recursiveStep % 2 == 0 ) {
       drawVerticalJaggies(resolutionLayer, position, !white, recursiveStep + 1);

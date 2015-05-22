@@ -79,3 +79,153 @@ function drawPlainTriangleUnmirrored(resolutionLayer, position, white) {
   ctx.closePath();
   ctx.fill();
 };
+
+function drawRecursiveTriangle(resolutionLayer, position, white) {
+  if (resolutionLayer > SHRINKING_DEPTH) {
+    console.log("TOO FAR");
+    return;
+  }
+  console.log("rL: " + resolutionLayer + ", pos: [" + position[0] + ", " + position[1] + "], w?: " + white);
+
+  //background (maybe shrinkable?)
+  drawSquare(resolutionLayer, position, !white);
+
+  //main triangle (maybe deletable?)
+  drawPlainTriangle(resolutionLayer, position, white);
+
+  //getting the recursions on either side of the flipped teeth going
+  drawRecursiveTriangle(
+    resolutionLayer + 1,
+    [
+      Math.pow(2, resolutionLayer + 1) * position[0],
+      Math.pow(2, resolutionLayer + 1) * position[1] + 1
+    ],
+    white
+  );
+  drawRecursiveTriangle(
+    resolutionLayer + 2,
+    [
+      Math.pow(2, resolutionLayer + 2) * position[0] + 3,
+      Math.pow(2, resolutionLayer + 2) * position[1]
+    ],
+    white
+  );
+
+  //cores of the two flipped houndsteeth
+  drawSquare(
+    resolutionLayer + 3,
+    [
+      Math.pow(2, resolutionLayer + 3) * position[0] + 5,
+      Math.pow(2, resolutionLayer + 3) * position[1] + 3
+    ],
+    !white
+  );
+  drawSquare(
+    resolutionLayer + 3,
+    [
+      Math.pow(2, resolutionLayer + 3) * position[0] + 4,
+      Math.pow(2, resolutionLayer + 3) * position[1] + 2
+    ],
+    white
+  );
+
+  //outside of the roots
+  drawRecursiveTriangle(
+    resolutionLayer + 3,
+    [
+      Math.pow(2, resolutionLayer + 3) * position[0] + 3,
+      Math.pow(2, resolutionLayer + 3) * position[1] + 2
+    ],
+    white
+  );
+  drawRecursiveTriangle(
+    resolutionLayer + 3,
+    [
+      Math.pow(2, resolutionLayer + 3) * position[0] + 5,
+      Math.pow(2, resolutionLayer + 3) * position[1] + 4
+    ],
+    white
+  );
+  drawRecursiveTriangle(
+    resolutionLayer + 3,
+    [
+      Math.pow(2, resolutionLayer + 3) * position[0] + 4,
+      Math.pow(2, resolutionLayer + 3) * position[1] + 3
+    ],
+    !white
+  );
+
+  //inside of roots
+  drawRecursiveTriangle(
+    resolutionLayer + 4,
+    [
+      Math.pow(2, resolutionLayer + 4) * position[0] + 7,
+      Math.pow(2, resolutionLayer + 4) * position[1] + 5
+    ],
+    !white
+  );
+  drawRecursiveTriangle(
+    resolutionLayer + 4,
+    [
+      Math.pow(2, resolutionLayer + 4) * position[0] + 8,
+      Math.pow(2, resolutionLayer + 4) * position[1] + 6
+    ],
+    white
+  );
+  drawRecursiveTriangle(
+    resolutionLayer + 4,
+    [
+      Math.pow(2, resolutionLayer + 4) * position[0] + 9,
+      Math.pow(2, resolutionLayer + 4) * position[1] + 7
+    ],
+    white
+  );
+  drawRecursiveTriangle(
+    resolutionLayer + 4,
+    [
+      Math.pow(2, resolutionLayer + 4) * position[0] + 10,
+      Math.pow(2, resolutionLayer + 4) * position[1] + 8
+    ],
+    !white
+  );
+
+  //cusps
+  drawRecursiveTriangle(
+    resolutionLayer + 4,
+    [
+      Math.pow(2, resolutionLayer + 4) * position[0] + 9,
+      Math.pow(2, resolutionLayer + 4) * position[1] + 3
+    ],
+    white
+  );
+  drawRecursiveTriangle(
+    resolutionLayer + 4,
+    [
+      Math.pow(2, resolutionLayer + 4) * position[0] + 10,
+      Math.pow(2, resolutionLayer + 4) * position[1] + 4
+    ],
+    !white
+  );
+  drawRecursiveTriangle(
+    resolutionLayer + 4,
+    [
+      Math.pow(2, resolutionLayer + 4) * position[0] + 11,
+      Math.pow(2, resolutionLayer + 4) * position[1] + 5
+    ],
+    !white
+  );
+  drawRecursiveTriangle(
+    resolutionLayer + 4,
+    [
+      Math.pow(2, resolutionLayer + 4) * position[0] + 12,
+      Math.pow(2, resolutionLayer + 4) * position[1] + 6
+    ],
+    white
+  );
+}
+
+// function drawHoundstooth(resolutionLayer, position, white) {
+//   drawSquare(resolutionLayer, position, white);
+//   drawRecursiveTriangle(resolutionLayer, [position[0] - 1, position[1]], white);
+//   //drawRecursiveTriangle(resolutionLayer, [position[0], position[1] + 1], white);
+// }
