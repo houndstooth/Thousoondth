@@ -9,13 +9,13 @@ ctx.lineWidth = 1;
 RECURSIVE_DEPTH = 5;
 
 //LEVEL 1
-// function drawRecursiveTriangle(resolutionLayer, position, white) {
+// function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //   for (var i = 0; i < RECURSIVE_DEPTH; i++) {
 //     drawTriangle(
 //       i + resolutionLayer,
 //       [
-//         (position[0] + 1) * Math.pow(2, i) - 1 ,
-//         (position[1] + 1) * Math.pow(2, i) - 1
+//         (pos[0] + 1) * Math.pow(2, i) - 1 ,
+//         (pos[1] + 1) * Math.pow(2, i) - 1
 //       ],
 //       i % 2 == white ? 0 : 1
 //     );
@@ -23,7 +23,7 @@ RECURSIVE_DEPTH = 5;
 // }
 
 //LEVEL 2
-function drawDoppleRecursiveTriangle(resolutionLayer, position, white, iteration) {
+function drawDoppleRecursiveTriangle(resolutionLayer, pos, white, iteration) {
 
   //DO I NEED TO DO SOMETHING WITH THE J PASSED IN TO THIS???????!?!?! okay, skip j for now
 
@@ -31,18 +31,18 @@ function drawDoppleRecursiveTriangle(resolutionLayer, position, white, iteration
     drawTriangle(
       i + resolutionLayer,
       [
-        (position[0] + 1) * Math.pow(2, i ) - 1 ,
-        (position[1] + 1) * Math.pow(2, i ) - 1
+        (pos[0] + 1) * Math.pow(2, i ) - 1 ,
+        (pos[1] + 1) * Math.pow(2, i ) - 1
       ],
       i % 2 == white ? 0 : 1
     );
 
     if (iteration < RECURSIVE_DEPTH) {
       if (i % 2 == 0 ) {
-        drawVerticallyRecursiveEdgeOfTooth(resolutionLayer, position, white, i, iteration + 1);
+        drawVerticallyRecursiveEdgeOfTooth(resolutionLayer, pos, white, i, iteration + 1);
       }
       // else {
-      //   drawRecursiveTopOfTooth(resolutionLayer, position, white, i, iteration + 1);
+      //   drawRecursiveTopOfTooth(resolutionLayer, pos, white, i, iteration + 1);
       // }
     }
 
@@ -50,28 +50,28 @@ function drawDoppleRecursiveTriangle(resolutionLayer, position, white, iteration
   }
 }
 
-function drawVerticallyRecursiveEdgeOfTooth(resolutionLayer, position, white, i, iteration) {
+function drawVerticallyRecursiveEdgeOfTooth(resolutionLayer, pos, white, i, iteration) {
   for (var j = 0; j < RECURSIVE_DEPTH; j++) {
     drawDoppleRecursiveTriangle(
       i + resolutionLayer + j + 2,
       [
-        (position[0] + 1) * Math.pow(2, i + 2 + j) - 1 ,
-        (position[1] + Math.pow(2, -1 - j)) * Math.pow(2, i + 2 + j) - 1
+        (pos[0] + 1) * Math.pow(2, i + 2 + j) - 1 ,
+        (pos[1] + Math.pow(2, -1 - j)) * Math.pow(2, i + 2 + j) - 1
       ],
       i % 2 == white ? 1 : 0,
       iteration + 1
     );
 
     //if (j % 2 == 0 && iteration < RECURSIVE_DEPTH) {
-      //drawDoppleRecursiveTriangle(resolutionLayer, position, white, j, iteration + 1);
+      //drawDoppleRecursiveTriangle(resolutionLayer, pos, white, j, iteration + 1);
     //}
 
     // if (iteration < RECURSIVE_DEPTH) {
     //   drawRecursiveTopOfTooth(    //NOT AT ALL SURE ABOUT THESE PARAMS!!!!
     //     i + resolutionLayer + j ,
     //     [
-    //       (position[0] + 1) * Math.pow(2, i + j) - 1 ,
-    //       (position[1] + Math.pow(2, -1 - j)) * Math.pow(2, i + j) - 1
+    //       (pos[0] + 1) * Math.pow(2, i + j) - 1 ,
+    //       (pos[1] + Math.pow(2, -1 - j)) * Math.pow(2, i + j) - 1
     //     ],
     //     i % 2 == white ? 1 : 0
     //   );
@@ -81,13 +81,13 @@ function drawVerticallyRecursiveEdgeOfTooth(resolutionLayer, position, white, i,
 }
 
 //LEVEL 3
-function drawRecursiveTopOfTooth(resolutionLayer, position, white, j, iteration) {
+function drawRecursiveTopOfTooth(resolutionLayer, pos, white, j, iteration) {
   for (var i = 0; i < RECURSIVE_DEPTH; i++) {
     drawDoppleRecursiveTriangle(
       i + 1 + resolutionLayer ,
       [
-        position[0] * Math.pow(2, i ) + Math.pow(2, i  + 1) + 1,
-        position[1] * Math.pow(2, i  + 1) - 1
+        pos[0] * Math.pow(2, i ) + Math.pow(2, i  + 1) + 1,
+        pos[1] * Math.pow(2, i  + 1) - 1
       ],
       white,
       iteration + 1
@@ -96,13 +96,13 @@ function drawRecursiveTopOfTooth(resolutionLayer, position, white, j, iteration)
 };
 
 //????
-function drawRecursiveTopOfToothWithEdgeOfWhiteSpace(resolutionLayer, position, white) {
+function drawRecursiveTopOfToothWithEdgeOfWhiteSpace(resolutionLayer, pos, white) {
   for (var i = 0; i < RECURSIVE_DEPTH; i++) {
     drawDoppleRecursiveTriangle(
       i + 1 + resolutionLayer,
       [
-        position[0] * Math.pow(2, i) + Math.pow(2, i + 1) + 1,
-        position[1] * Math.pow(2, i + 1) - 1
+        pos[0] * Math.pow(2, i) + Math.pow(2, i + 1) + 1,
+        pos[1] * Math.pow(2, i + 1) - 1
       ],
       white,
       0,
@@ -111,16 +111,16 @@ function drawRecursiveTopOfToothWithEdgeOfWhiteSpace(resolutionLayer, position, 
     drawTriangle(
       i + 1 + resolutionLayer,
       [
-        position[0] * Math.pow(2, i) + Math.pow(2, i + 1) + 1,
-        position[1] * Math.pow(2, i + 1) - 2
+        pos[0] * Math.pow(2, i) + Math.pow(2, i + 1) + 1,
+        pos[1] * Math.pow(2, i + 1) - 2
       ],
       !white
     );
     drawSquare(
       i + 1 + resolutionLayer,
       [
-        position[0] * Math.pow(2, i) + Math.pow(2, i + 1) ,
-        position[1] * Math.pow(2, i + 1) - 2
+        pos[0] * Math.pow(2, i) + Math.pow(2, i + 1) ,
+        pos[1] * Math.pow(2, i + 1) - 2
       ],
       white
     )
@@ -128,13 +128,13 @@ function drawRecursiveTopOfToothWithEdgeOfWhiteSpace(resolutionLayer, position, 
 };
 
 //NOT YET FINISHED IMPLEMENTING
-// function drawDoppleRecursiveTopOfTooth(resolutionLayer, position, white) {
+// function drawDoppleRecursiveTopOfTooth(resolutionLayer, pos, white) {
 //   for (var i = 0; i < RECURSIVE_DEPTH; i++) {
 //     drawRecursiveTopOfTooth(
 //       i + 1 + resolutionLayer,
 //       [
-//         position[0] * Math.pow(2, i) + Math.pow(2, i + 1) + 1,
-//         position[1] * Math.pow(2, i + 1) - 1
+//         pos[0] * Math.pow(2, i) + Math.pow(2, i + 1) + 1,
+//         pos[1] * Math.pow(2, i + 1) - 1
 //       ],
 //       white
 //     );

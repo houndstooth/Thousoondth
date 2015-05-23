@@ -1,4 +1,4 @@
-function doWholeThing(resolutionLayer, position, white) {
+function doWholeThing(resolutionLayer, pos, white) {
   for (var i = 0; i < SHRINKING_DEPTH; i++ ) {
     if (i % 2 == 0) {
       drawSquare(

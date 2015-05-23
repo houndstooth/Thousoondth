@@ -24,7 +24,7 @@
 //   drawBottomRightTriangle(i + 1, [Math.pow(2, i) - 1, Math.pow(2, i) - 1], i % 2 == 0)
 // }
 //
-// function drawRecursiveBottomRightTriangle(resolutionLayer, position, white) {
+// function drawRecursiveBottomRightTriangle(resolutionLayer, pos, white) {
 //   for (i = 0; i < RECURSIVE_DEPTH; i++) {
 //     drawBottomRightTriangle(i + resolutionLayer,
 //       [Math.pow(2, i - 1) - 1, Math.pow(2, i - 1) - 1],
@@ -34,17 +34,17 @@
 
 // scratchpad for final implementation of mirror imaging
 //
-// function mirrorImage(fn, resolutionLayer, position, white) {
+// function mirrorImage(fn, resolutionLayer, pos, white) {
 //   console.log(fn);
-//   position =
-//   fn(resolutionLayer, position, white);
+//   pos =
+//   fn(resolutionLayer, pos, white);
 // }
 //
-// function mirrored(position) {
-//   return Math.pow(2, resolutionLayer) - position;
+// function mirrored(pos) {
+//   return Math.pow(2, resolutionLayer) - pos;
 // }
 //
-// mirrorImage(drawTopLeftTriangle, resolutionLayer, position, white);
+// mirrorImage(drawTopLeftTriangle, resolutionLayer, pos, white);
 
 
 // scratchpad for coming up with final implementation of truly recursive stuff
@@ -53,8 +53,8 @@
 //   drawBottomRightTriangle(
 //     i + resolutionLayer + 1 + j,
 //     [
-//       (position[0] + 1 - Math.pow(2, j)) * Math.pow(2, i) - 1 ,
-//       (position[1] + 1) * Math.pow(2, i) - 1
+//       (pos[0] + 1 - Math.pow(2, j)) * Math.pow(2, i) - 1 ,
+//       (pos[1] + 1) * Math.pow(2, i) - 1
 //     ],
 //     i % 2 == white ? 0 : 1
 //   );
@@ -69,13 +69,13 @@
 
 // discarded unnecessary trapezoid function
 //
-// function drawBottomRightTrapezoid(resolutionLayer, position, white) {
+// function drawBottomRightTrapezoid(resolutionLayer, pos, white) {
 //   for (var i = 0; i < 2; i++) {
 //     drawBottomRightTriangle(
 //       i + resolutionLayer,
 //       [
-//         (position[0] + 1) * Math.pow(2, i) - 1 ,
-//         (position[1] + 1) * Math.pow(2, i) - 1
+//         (pos[0] + 1) * Math.pow(2, i) - 1 ,
+//         (pos[1] + 1) * Math.pow(2, i) - 1
 //       ],
 //       i % 2 == white ? 0 : 1
 //     );
@@ -109,19 +109,19 @@
 //     drawRecursiveBottomRightTriangle(
 //       resolutionLayer + i + 1,
 //       [
-//         resolutionLayer * position[0] + 1,
-//         resolutionLayer * position[0] - 1,
+//         resolutionLayer * pos[0] + 1,
+//         resolutionLayer * pos[0] - 1,
 //       ],
 //       white);
 //   }
 
 // scratchpad for top left vs bottom right triangles
 //
-// function drawMirror(resolutionLayer, position, white) {
-//   var mirroredPosition = [];
-//   mirroredPosition[0] = Math.pow(2, resolutionLayer) - position[1] - 1;
-//   mirroredPosition[1] = Math.pow(2, resolutionLayer) - position[0] - 1;
-//   drawTriangle(!topLeft, resolutionLayer, mirroredPosition, white, false);
+// function drawMirror(resolutionLayer, pos, white) {
+//   var mirroredpos = [];
+//   mirroredpos[0] = Math.pow(2, resolutionLayer) - pos[1] - 1;
+//   mirroredpos[1] = Math.pow(2, resolutionLayer) - pos[0] - 1;
+//   drawTriangle(!topLeft, resolutionLayer, mirroredpos, white, false);
 // }
 //
 // function traceTriangleCoords(topLeft, topLeftX, topLeftY, unit) {
@@ -135,14 +135,14 @@
 //   ctx.lineTo(topLeftX, topLeftY + unit );
 // }
 //
-// function drawTopLeftTriangle(resolutionLayer, position, white, drawMirror) {
+// function drawTopLeftTriangle(resolutionLayer, pos, white, drawMirror) {
 //   drawMirror = typeof drawMirror !== 'undefined' ? drawMirror : true;
 //   ctx.fillStyle = white ? "#fff" : "#000"
 //
 //   var resolution = Math.pow(2, resolutionLayer);
 //   var unit = WIDTH / resolution;
-//   var topLeftX = position[0] * unit;
-//   var topLeftY = position[1] * unit;
+//   var topLeftX = pos[0] * unit;
+//   var topLeftY = pos[1] * unit;
 //
 //   ctx.beginPath();
 //   ctx.moveTo(topLeftX,        topLeftY        );
@@ -152,21 +152,21 @@
 //   ctx.closePath();
 //   ctx.fill();
 //   if (drawMirror) {
-//     var mirroredPosition = [];
-//     mirroredPosition[0] = Math.pow(2, resolutionLayer) - position[1] - 1;
-//     mirroredPosition[1] = Math.pow(2, resolutionLayer) - position[0] - 1;
-//     drawBottomRightTriangle(resolutionLayer, mirroredPosition, white, false);
+//     var mirroredpos = [];
+//     mirroredpos[0] = Math.pow(2, resolutionLayer) - pos[1] - 1;
+//     mirroredpos[1] = Math.pow(2, resolutionLayer) - pos[0] - 1;
+//     drawBottomRightTriangle(resolutionLayer, mirroredpos, white, false);
 //   }
 // }
 //
-// function drawBottomRightTriangle(resolutionLayer, position, white, drawMirror) {
+// function drawBottomRightTriangle(resolutionLayer, pos, white, drawMirror) {
 //   drawMirror = typeof drawMirror !== 'undefined' ? drawMirror : true;
 //   ctx.fillStyle = white ? "#fff" : "#000"
 //
 //   var resolution = Math.pow(2, resolutionLayer);
 //   var unit = WIDTH / resolution;
-//   var topLeftX = position[0] * unit;
-//   var topLeftY = position[1] * unit;
+//   var topLeftX = pos[0] * unit;
+//   var topLeftY = pos[1] * unit;
 //
 //   ctx.beginPath();
 //   //ctx.moveTo(topLeftX,        topLeftY        ); //start at top right corner
@@ -177,10 +177,10 @@
 //   ctx.fill();
 //
 //   if (drawMirror) {
-//     var mirroredPosition = [];
-//     mirroredPosition[0] = Math.pow(2, resolutionLayer) - position[1] - 1;
-//     mirroredPosition[1] = Math.pow(2, resolutionLayer) - position[0] - 1;
-//     drawTopLeftTriangle(resolutionLayer, mirroredPosition, white, false);
+//     var mirroredpos = [];
+//     mirroredpos[0] = Math.pow(2, resolutionLayer) - pos[1] - 1;
+//     mirroredpos[1] = Math.pow(2, resolutionLayer) - pos[0] - 1;
+//     drawTopLeftTriangle(resolutionLayer, mirroredpos, white, false);
 //   }
 // }
 
@@ -189,32 +189,32 @@
 // drawRecursiveTriangle(
 //   i + resolutionLayer + 2,
 //   [
-//     (position[0] + 1) * Math.pow(2, i + 2) - 1 ,
-//     (position[1] + .5) * Math.pow(2, i + 2) - 1
+//     (pos[0] + 1) * Math.pow(2, i + 2) - 1 ,
+//     (pos[1] + .5) * Math.pow(2, i + 2) - 1
 //   ],
 //   i % 2 == white ? 1 : 0
 // );
 // drawRecursiveTriangle(
 //   i + resolutionLayer + 3,
 //   [
-//     (position[0] + 1) * Math.pow(2, i + 3) - 1 ,
-//     (position[1] + .25) * Math.pow(2, i + 3) - 1
+//     (pos[0] + 1) * Math.pow(2, i + 3) - 1 ,
+//     (pos[1] + .25) * Math.pow(2, i + 3) - 1
 //   ],
 //   i % 2 == white ? 1 : 0
 // );
 // drawRecursiveTriangle(
 //   i + resolutionLayer + 4,
 //   [
-//     (position[0] + 1) * Math.pow(2, i + 4) - 1 ,
-//     (position[1] + .125) * Math.pow(2, i + 4) - 1
+//     (pos[0] + 1) * Math.pow(2, i + 4) - 1 ,
+//     (pos[1] + .125) * Math.pow(2, i + 4) - 1
 //   ],
 //   i % 2 == white ? 1 : 0
 // );
 // drawRecursiveTriangle(
 //   i + resolutionLayer + 5,
 //   [
-//     (position[0] + 1) * Math.pow(2, i + 5) - 1 ,
-//     (position[1] + .0625) * Math.pow(2, i + 5) - 1
+//     (pos[0] + 1) * Math.pow(2, i + 5) - 1 ,
+//     (pos[1] + .0625) * Math.pow(2, i + 5) - 1
 //   ],
 //   i % 2 == white ? 1 : 0
 // );

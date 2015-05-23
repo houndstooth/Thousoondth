@@ -175,13 +175,13 @@ function thisHoundstoothWouldntSplitUpTheMainOne(i,j) {
   return true;
 }
 
-function flipGridTrisToHoundstooth(resolutionLayer, position, white) {
+function flipGridTrisToHoundstooth(resolutionLayer, pos, white) {
   console.log("flipped houndstooth");
   console.log(resolutionLayer);
-  console.log(position);
+  console.log(pos);
   console.log(white);
-  var i = position[0];
-  var j = position[1];
+  var i = pos[0];
+  var j = pos[1];
   var res = topLeftGrid.length;
 
   //square
@@ -211,72 +211,72 @@ function flipGridTrisToHoundstooth(resolutionLayer, position, white) {
   topLeftGrid[i][(j+3)%res] = white;
 }
 
-// function drawHoundstooth(resolutionLayer, position, white) {
+// function drawHoundstooth(resolutionLayer, pos, white) {
   // if (white) {
-    // console.log("drawing a white houndsooth at level " + resolutionLayer + " at [" + position[0] + "," + position[1] + "]");
+    // console.log("drawing a white houndsooth at level " + resolutionLayer + " at [" + pos[0] + "," + pos[1] + "]");
 
   // //square
   // drawTopLeftTriangle(
   //   resolutionLayer + 1,
   //   [
-  //     position[0] * Math.pow(2, resolutionLayer),
-  //     position[1] * Math.pow(2, resolutionLayer)
+  //     pos[0] * Math.pow(2, resolutionLayer),
+  //     pos[1] * Math.pow(2, resolutionLayer)
   //   ],
   //   white
   // );
   // drawBottomRightTriangle(
   //   resolutionLayer + 1,
   //   [
-  //     position[0] * Math.pow(2, resolutionLayer),
-  //     position[1] * Math.pow(2, resolutionLayer)
+  //     pos[0] * Math.pow(2, resolutionLayer),
+  //     pos[1] * Math.pow(2, resolutionLayer)
   //   ],
   //   white
   // );
   // drawTopLeftTriangle(
   //   resolutionLayer + 1,
   //   [
-  //     position[0] * Math.pow(2, resolutionLayer) + 1,
-  //     position[1] * Math.pow(2, resolutionLayer)
+  //     pos[0] * Math.pow(2, resolutionLayer) + 1,
+  //     pos[1] * Math.pow(2, resolutionLayer)
   //   ],
   //   white
   // );
   // drawBottomRightTriangle(
   //   resolutionLayer + 1,
   //   [
-  //     position[0] * Math.pow(2, resolutionLayer) + 1,
-  //     position[1] * Math.pow(2, resolutionLayer)
+  //     pos[0] * Math.pow(2, resolutionLayer) + 1,
+  //     pos[1] * Math.pow(2, resolutionLayer)
   //   ],
   //   white
   // );
   // drawTopLeftTriangle(
   //   resolutionLayer + 1,
   //   [
-  //     position[0] * Math.pow(2, resolutionLayer) ,
-  //     position[1] * Math.pow(2, resolutionLayer) + 1
+  //     pos[0] * Math.pow(2, resolutionLayer) ,
+  //     pos[1] * Math.pow(2, resolutionLayer) + 1
   //   ],
   //   white
   // );
   // drawBottomRightTriangle(
   //   resolutionLayer + 1,
   //   [
-  //     position[0] * Math.pow(2, resolutionLayer) ,
-  //     position[1] * Math.pow(2, resolutionLayer) + 1
+  //     pos[0] * Math.pow(2, resolutionLayer) ,
+  //     pos[1] * Math.pow(2, resolutionLayer) + 1
   //   ],
   //   white
   // );
   // drawTopLeftTriangle(
   //   resolutionLayer + 1,
   //   [
-  //     position[0] * Math.pow(2, resolutionLayer) + 1,
-  //     position[1] * Math.pow(2, resolutionLayer) + 1
+  //     pos[0] * Math.pow(2, resolutionLayer) + 1,
+  //     pos[1] * Math.pow(2, resolutionLayer) + 1
   //   ],
   //   white
   // );
   // drawBottomRightTriangle(
   //   resolutionLayer + 1,
   //   [
-  //     position[0] * Math.pow(2, resolutionLayer) + 1,
-  //     position[1] * Math.pow(2, resolutionLayer) + 1
+  //     pos[0] * Math.pow(2, resolutionLayer) + 1,
+  //     pos[1] * Math.pow(2, resolutionLayer) + 1
   //   ],
   //   white
   // );
@@ -285,8 +285,8 @@ function flipGridTrisToHoundstooth(resolutionLayer, position, white) {
   // drawBottomRightTriangle(
   //   resolutionLayer + 1,
   //   [
-  //     position[0] * Math.pow(2, resolutionLayer) + 1,
-  //     position[1] * Math.pow(2, resolutionLayer) - 1
+  //     pos[0] * Math.pow(2, resolutionLayer) + 1,
+  //     pos[1] * Math.pow(2, resolutionLayer) - 1
   //   ],
   //   white
   // );
@@ -295,8 +295,8 @@ function flipGridTrisToHoundstooth(resolutionLayer, position, white) {
   // drawTopLeftTriangle(
   //   resolutionLayer + 1,
   //   [
-  //     position[0] * Math.pow(2, resolutionLayer) + 2,
-  //     position[1] * Math.pow(2, resolutionLayer)
+  //     pos[0] * Math.pow(2, resolutionLayer) + 2,
+  //     pos[1] * Math.pow(2, resolutionLayer)
   //   ],
   //   white
   // );
@@ -305,24 +305,24 @@ function flipGridTrisToHoundstooth(resolutionLayer, position, white) {
   // drawTopLeftTriangle(
   //   resolutionLayer + 1,
   //   [
-  //     position[0] * Math.pow(2, resolutionLayer) + 1,
-  //     position[1] * Math.pow(2, resolutionLayer) + 2
+  //     pos[0] * Math.pow(2, resolutionLayer) + 1,
+  //     pos[1] * Math.pow(2, resolutionLayer) + 2
   //   ],
   //   white
   // );
   // drawBottomRightTriangle(
   //   resolutionLayer + 1,
   //   [
-  //     position[0] * Math.pow(2, resolutionLayer) ,
-  //     position[1] * Math.pow(2, resolutionLayer) + 2
+  //     pos[0] * Math.pow(2, resolutionLayer) ,
+  //     pos[1] * Math.pow(2, resolutionLayer) + 2
   //   ],
   //   white
   // );
   // drawTopLeftTriangle(
   //   resolutionLayer + 1,
   //   [
-  //     position[0] * Math.pow(2, resolutionLayer) ,
-  //     position[1] * Math.pow(2, resolutionLayer) + 3
+  //     pos[0] * Math.pow(2, resolutionLayer) ,
+  //     pos[1] * Math.pow(2, resolutionLayer) + 3
   //   ],
   //   white
   // );
@@ -331,31 +331,31 @@ function flipGridTrisToHoundstooth(resolutionLayer, position, white) {
   // drawBottomRightTriangle(
   //   resolutionLayer + 1,
   //   [
-  //     position[0] * Math.pow(2, resolutionLayer) - 1,
-  //     position[1] * Math.pow(2, resolutionLayer)
+  //     pos[0] * Math.pow(2, resolutionLayer) - 1,
+  //     pos[1] * Math.pow(2, resolutionLayer)
   //   ],
   //   white
   // );
   // drawTopLeftTriangle(
   //   resolutionLayer + 1,
   //   [
-  //     position[0] * Math.pow(2, resolutionLayer) - 1 ,
-  //     position[1] * Math.pow(2, resolutionLayer) + 1
+  //     pos[0] * Math.pow(2, resolutionLayer) - 1 ,
+  //     pos[1] * Math.pow(2, resolutionLayer) + 1
   //   ],
   //   white
   // );
   // drawBottomRightTriangle(
   //   resolutionLayer + 1,
   //   [
-  //     position[0] * Math.pow(2, resolutionLayer) - 2 ,
-  //     position[1] * Math.pow(2, resolutionLayer) + 1
+  //     pos[0] * Math.pow(2, resolutionLayer) - 2 ,
+  //     pos[1] * Math.pow(2, resolutionLayer) + 1
   //   ],
   //   white
   // );
 
 
   // } else {
-  //   console.log("drawing a black houndsooth at level " + resolutionLayer + " at [" + position[0] + "," + position[1] + "]");
+  //   console.log("drawing a black houndsooth at level " + resolutionLayer + " at [" + pos[0] + "," + pos[1] + "]");
   // }
 
 // }
@@ -603,14 +603,14 @@ function convertBottomRightGridCell(i, j) {
   newTopLeftGrid[i*2+1][j*2+1] = bottomRightGrid[i][j];
 }
 
-function drawBottomRightTriangle(resolutionLayer, position, white) {
+function drawBottomRightTriangle(resolutionLayer, pos, white) {
   ctx.fillStyle = white ? "#fff" : "#000"
   ctx.strokeStyle = white ? "#fff" : "#000"
 
   var resolution = Math.pow(2, resolutionLayer);
   var unit = WIDTH / resolution;
-  var topLeftX = position[0] * unit;
-  var topLeftY = position[1] * unit;
+  var topLeftX = pos[0] * unit;
+  var topLeftY = pos[1] * unit;
 
   ctx.beginPath();
   ctx.moveTo(topLeftX + unit, topLeftY        );
@@ -621,14 +621,14 @@ function drawBottomRightTriangle(resolutionLayer, position, white) {
   ctx.stroke();
 }
 
-function drawTopLeftTriangle(resolutionLayer, position, white) {
+function drawTopLeftTriangle(resolutionLayer, pos, white) {
   ctx.fillStyle = white ? "#fff" : "#000"
   ctx.strokeStyle = white ? "#fff" : "#000"
 
   var resolution = Math.pow(2, resolutionLayer);
   var unit = WIDTH / resolution;
-  var topLeftX = position[0] * unit;
-  var topLeftY = position[1] * unit;
+  var topLeftX = pos[0] * unit;
+  var topLeftY = pos[1] * unit;
 
   ctx.beginPath();
   ctx.moveTo(topLeftX,        topLeftY        );
