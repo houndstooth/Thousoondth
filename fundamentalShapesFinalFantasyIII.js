@@ -2,16 +2,16 @@ SQUARE_VERTICES =           [ [1,0], [1,1], [0,1], [0,0] ];
 BOTTOM_TRIANGLE_VERTICES =  [ [1,0], [1,1], [0,1]        ];
 TOP_TRIANGLE_VERTICES =     [ [1,0],        [0,1], [0,0] ];
 
-function drawPlainTriangle(resLayer, pos, white, TL) {
+function PlainTriangle(resLayer, pos, white, TL) {
   var vertices = TL ? TOP_TRIANGLE_VERTICES : BOTTOM_TRIANGLE_VERTICES;
-  drawShape(resLayer, pos[0], pos[1], white, vertices);
+  Shape(resLayer, pos[0], pos[1], white, vertices);
 };
 
-function drawSquare(resLayer, pos, white) {
-  drawShape(resLayer, pos[0], pos[1], white, SQUARE_VERTICES);
+function Square(resLayer, pos, white) {
+  Shape(resLayer, pos[0], pos[1], white, SQUARE_VERTICES);
 };
 
-function drawShape(resLayer, r, c, white, vertices) {
+function Shape(resLayer, r, c, white, vertices) {
   ctx.fillStyle = white ? "#fff" : "#000"
   var resolution = Math.pow(2, resLayer);
   var unit = WIDTH / resolution;

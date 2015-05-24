@@ -7,14 +7,14 @@ RESOLUTION_DEPTH = 7;
 TL_CONSTANTS = [ -2,  0,  0, -2]
 BR_CONSTANTS = [ -1,  1,  1, -1]
 
-function drawMagicTriangle(resLayer, pos, white, recursiveStep, woEdge, TL) {
+function MagicTriangle(resLayer, pos, white, recursiveStep, woEdge, TL) {
   var vertical = recursiveStep % 2 == 1 ? true : false;
-  drawPlainTriangle(resLayer, pos, white, TL);
-  if (!woEdge) { drawRecursiveEdge(resLayer, pos, (TL ? !white : white), vertical, false); }
-  drawJaggies(resLayer, pos, !white, recursiveStep + 1, vertical, TL);
+  PlainTriangle(resLayer, pos, white, TL);
+  if (!woEdge) { RecursiveEdge(resLayer, pos, (TL ? !white : white), vertical, false); }
+  Jaggies(resLayer, pos, !white, recursiveStep + 1, vertical, TL);
 };
 
-function drawJaggies(resLayer, pos, white, recursiveStep, vertical, TL) {
+function Jaggies(resLayer, pos, white, recursiveStep, vertical, TL) {
   var offset_constants = TL ? TL_CONSTANTS : BR_CONSTANTS;
   var i = 0;
   while (true) {
@@ -27,7 +27,7 @@ function drawJaggies(resLayer, pos, white, recursiveStep, vertical, TL) {
       var c = (pos[0] - 0) * Math.pow(2, i + 1) + offset_constants[2];
       var r = (pos[1] + 1) * Math.pow(2, i + 1) + offset_constants[3];
     }
-    drawMagicTriangle(thisResLayer, [c,r], white, recursiveStep, false, TL);
+    MagicTriangle(thisResLayer, [c,r], white, recursiveStep, false, TL);
     i++;
   };
 };
