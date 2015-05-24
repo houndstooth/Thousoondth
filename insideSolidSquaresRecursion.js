@@ -1,7 +1,7 @@
-function drawWholeThing(resolutionLayer, pos, white, iteration) {
+function drawWholeThing(resLayer, pos, white, iteration) {
   //initial black canvas
   //drawSquare(0, [0, 0], false);
-  drawSquare(resolutionLayer, pos, white)
+  drawSquare(resLayer, pos, white)
 
   // do a "wrap around" over the edges so see if you can get recursive formula to
   //   capture this stuff on the left and bottom edges too?
@@ -14,10 +14,10 @@ function drawWholeThing(resolutionLayer, pos, white, iteration) {
   //   true
   // );
   drawRecursiveTopOfTooth(
-      resolutionLayer + 1,
+      resLayer + 1,
       [
-        pos[0] * Math.pow(2, resolutionLayer),
-        Math.pow(2, resolutionLayer),
+        pos[0] * Math.pow(2, resLayer),
+        Math.pow(2, resLayer),
       ],
       !white
   )

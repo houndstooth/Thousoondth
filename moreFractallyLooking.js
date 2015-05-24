@@ -88,23 +88,23 @@ convertActualHoundstoothGridsToNextLayer();
 
 
 function renderReality() {
-  var resolutionLayer = Math.ceil(Math.log2(topLeftGrid.length));
-  // console.log(resolutionLayer);
+  var resLayer = Math.ceil(Math.log2(topLeftGrid.length));
+  // console.log(resLayer);
   for (var i = 0; i < topLeftGrid.length; i++ ) {
     for (var j = 0; j < topLeftGrid[0].length; j++ ) {
-      drawTopLeftTriangle(resolutionLayer, [i, j], topLeftGrid[i][j]);
-      drawBottomRightTriangle(resolutionLayer, [i, j], bottomRightGrid[i][j]);
+      drawTopLeftTriangle(resLayer, [i, j], topLeftGrid[i][j]);
+      drawBottomRightTriangle(resLayer, [i, j], bottomRightGrid[i][j]);
     }
   }
 }
 
 function renderActualHoundstooth() {
-  var resolutionLayer = Math.log2(actualHoundstoothTopLeftGrid.length);
-  // console.log(resolutionLayer);
+  var resLayer = Math.log2(actualHoundstoothTopLeftGrid.length);
+  // console.log(resLayer);
   for (var i = 0; i < actualHoundstoothTopLeftGrid.length; i++ ) {
     for (var j = 0; j < actualHoundstoothTopLeftGrid[0].length; j++ ) {
-      drawTopLeftTriangle(resolutionLayer, [i, j], actualHoundstoothTopLeftGrid[i][j]);
-      drawBottomRightTriangle(resolutionLayer, [i, j], actualHoundstoothBottomRightGrid[i][j]);
+      drawTopLeftTriangle(resLayer, [i, j], actualHoundstoothTopLeftGrid[i][j]);
+      drawBottomRightTriangle(resLayer, [i, j], actualHoundstoothBottomRightGrid[i][j]);
     }
   }
 }
@@ -133,7 +133,7 @@ function doSomeFractalMagic() {
   console.log(actualHoundstoothBottomRightGrid);
 
 
-  var resolutionLayer = Math.log2(actualHoundstoothTopLeftGrid.length);  //MINUS ONE?!?!?!?!
+  var resLayer = Math.log2(actualHoundstoothTopLeftGrid.length);  //MINUS ONE?!?!?!?!
   //check blacks
   for (var i = 2; i < topLeftGrid.length; i = i + 4 ) {
     for (var j = 0; j < topLeftGrid[0].length; j = j + 4 ) {
@@ -144,9 +144,9 @@ function doSomeFractalMagic() {
       //   ///also not coutn the white tris, but coutn the MATCHES between it and that...
       // }
       if (numMatches(i,j) >= 8) {
-        // drawHoundstooth(resolutionLayer - 1, [i,j], false)
+        // drawHoundstooth(resLayer - 1, [i,j], false)
         if (thisHoundstoothWouldntSplitUpTheMainOne(i,j)) {
-          flipGridTrisToHoundstooth(resolutionLayer - 1, [i,j], false);
+          flipGridTrisToHoundstooth(resLayer - 1, [i,j], false);
         }
 
       }
@@ -162,9 +162,9 @@ function doSomeFractalMagic() {
       //   ///also not coutn the white tris, but coutn the MATCHES between it and that...
       // }
       if (numMatches(i,j) >= 8) {
-        // drawHoundstooth(resolutionLayer - 1, [i,j], true)
+        // drawHoundstooth(resLayer - 1, [i,j], true)
         if (thisHoundstoothWouldntSplitUpTheMainOne(i,j)) {
-          flipGridTrisToHoundstooth(resolutionLayer - 1, [i,j], true);
+          flipGridTrisToHoundstooth(resLayer - 1, [i,j], true);
         }
       }
     }
@@ -175,9 +175,9 @@ function thisHoundstoothWouldntSplitUpTheMainOne(i,j) {
   return true;
 }
 
-function flipGridTrisToHoundstooth(resolutionLayer, pos, white) {
+function flipGridTrisToHoundstooth(resLayer, pos, white) {
   console.log("flipped houndstooth");
-  console.log(resolutionLayer);
+  console.log(resLayer);
   console.log(pos);
   console.log(white);
   var i = pos[0];
@@ -211,151 +211,151 @@ function flipGridTrisToHoundstooth(resolutionLayer, pos, white) {
   topLeftGrid[i][(j+3)%res] = white;
 }
 
-// function drawHoundstooth(resolutionLayer, pos, white) {
+// function drawHoundstooth(resLayer, pos, white) {
   // if (white) {
-    // console.log("drawing a white houndsooth at level " + resolutionLayer + " at [" + pos[0] + "," + pos[1] + "]");
+    // console.log("drawing a white houndsooth at level " + resLayer + " at [" + pos[0] + "," + pos[1] + "]");
 
   // //square
   // drawTopLeftTriangle(
-  //   resolutionLayer + 1,
+  //   resLayer + 1,
   //   [
-  //     pos[0] * Math.pow(2, resolutionLayer),
-  //     pos[1] * Math.pow(2, resolutionLayer)
+  //     pos[0] * Math.pow(2, resLayer),
+  //     pos[1] * Math.pow(2, resLayer)
   //   ],
   //   white
   // );
   // drawBottomRightTriangle(
-  //   resolutionLayer + 1,
+  //   resLayer + 1,
   //   [
-  //     pos[0] * Math.pow(2, resolutionLayer),
-  //     pos[1] * Math.pow(2, resolutionLayer)
+  //     pos[0] * Math.pow(2, resLayer),
+  //     pos[1] * Math.pow(2, resLayer)
   //   ],
   //   white
   // );
   // drawTopLeftTriangle(
-  //   resolutionLayer + 1,
+  //   resLayer + 1,
   //   [
-  //     pos[0] * Math.pow(2, resolutionLayer) + 1,
-  //     pos[1] * Math.pow(2, resolutionLayer)
+  //     pos[0] * Math.pow(2, resLayer) + 1,
+  //     pos[1] * Math.pow(2, resLayer)
   //   ],
   //   white
   // );
   // drawBottomRightTriangle(
-  //   resolutionLayer + 1,
+  //   resLayer + 1,
   //   [
-  //     pos[0] * Math.pow(2, resolutionLayer) + 1,
-  //     pos[1] * Math.pow(2, resolutionLayer)
+  //     pos[0] * Math.pow(2, resLayer) + 1,
+  //     pos[1] * Math.pow(2, resLayer)
   //   ],
   //   white
   // );
   // drawTopLeftTriangle(
-  //   resolutionLayer + 1,
+  //   resLayer + 1,
   //   [
-  //     pos[0] * Math.pow(2, resolutionLayer) ,
-  //     pos[1] * Math.pow(2, resolutionLayer) + 1
+  //     pos[0] * Math.pow(2, resLayer) ,
+  //     pos[1] * Math.pow(2, resLayer) + 1
   //   ],
   //   white
   // );
   // drawBottomRightTriangle(
-  //   resolutionLayer + 1,
+  //   resLayer + 1,
   //   [
-  //     pos[0] * Math.pow(2, resolutionLayer) ,
-  //     pos[1] * Math.pow(2, resolutionLayer) + 1
+  //     pos[0] * Math.pow(2, resLayer) ,
+  //     pos[1] * Math.pow(2, resLayer) + 1
   //   ],
   //   white
   // );
   // drawTopLeftTriangle(
-  //   resolutionLayer + 1,
+  //   resLayer + 1,
   //   [
-  //     pos[0] * Math.pow(2, resolutionLayer) + 1,
-  //     pos[1] * Math.pow(2, resolutionLayer) + 1
+  //     pos[0] * Math.pow(2, resLayer) + 1,
+  //     pos[1] * Math.pow(2, resLayer) + 1
   //   ],
   //   white
   // );
   // drawBottomRightTriangle(
-  //   resolutionLayer + 1,
+  //   resLayer + 1,
   //   [
-  //     pos[0] * Math.pow(2, resolutionLayer) + 1,
-  //     pos[1] * Math.pow(2, resolutionLayer) + 1
+  //     pos[0] * Math.pow(2, resLayer) + 1,
+  //     pos[1] * Math.pow(2, resLayer) + 1
   //   ],
   //   white
   // );
   //
   // //top cusp
   // drawBottomRightTriangle(
-  //   resolutionLayer + 1,
+  //   resLayer + 1,
   //   [
-  //     pos[0] * Math.pow(2, resolutionLayer) + 1,
-  //     pos[1] * Math.pow(2, resolutionLayer) - 1
+  //     pos[0] * Math.pow(2, resLayer) + 1,
+  //     pos[1] * Math.pow(2, resLayer) - 1
   //   ],
   //   white
   // );
   //
   // //right cusp
   // drawTopLeftTriangle(
-  //   resolutionLayer + 1,
+  //   resLayer + 1,
   //   [
-  //     pos[0] * Math.pow(2, resolutionLayer) + 2,
-  //     pos[1] * Math.pow(2, resolutionLayer)
+  //     pos[0] * Math.pow(2, resLayer) + 2,
+  //     pos[1] * Math.pow(2, resLayer)
   //   ],
   //   white
   // );
   //
   // //bottom root
   // drawTopLeftTriangle(
-  //   resolutionLayer + 1,
+  //   resLayer + 1,
   //   [
-  //     pos[0] * Math.pow(2, resolutionLayer) + 1,
-  //     pos[1] * Math.pow(2, resolutionLayer) + 2
+  //     pos[0] * Math.pow(2, resLayer) + 1,
+  //     pos[1] * Math.pow(2, resLayer) + 2
   //   ],
   //   white
   // );
   // drawBottomRightTriangle(
-  //   resolutionLayer + 1,
+  //   resLayer + 1,
   //   [
-  //     pos[0] * Math.pow(2, resolutionLayer) ,
-  //     pos[1] * Math.pow(2, resolutionLayer) + 2
+  //     pos[0] * Math.pow(2, resLayer) ,
+  //     pos[1] * Math.pow(2, resLayer) + 2
   //   ],
   //   white
   // );
   // drawTopLeftTriangle(
-  //   resolutionLayer + 1,
+  //   resLayer + 1,
   //   [
-  //     pos[0] * Math.pow(2, resolutionLayer) ,
-  //     pos[1] * Math.pow(2, resolutionLayer) + 3
+  //     pos[0] * Math.pow(2, resLayer) ,
+  //     pos[1] * Math.pow(2, resLayer) + 3
   //   ],
   //   white
   // );
   //
   // //left root
   // drawBottomRightTriangle(
-  //   resolutionLayer + 1,
+  //   resLayer + 1,
   //   [
-  //     pos[0] * Math.pow(2, resolutionLayer) - 1,
-  //     pos[1] * Math.pow(2, resolutionLayer)
+  //     pos[0] * Math.pow(2, resLayer) - 1,
+  //     pos[1] * Math.pow(2, resLayer)
   //   ],
   //   white
   // );
   // drawTopLeftTriangle(
-  //   resolutionLayer + 1,
+  //   resLayer + 1,
   //   [
-  //     pos[0] * Math.pow(2, resolutionLayer) - 1 ,
-  //     pos[1] * Math.pow(2, resolutionLayer) + 1
+  //     pos[0] * Math.pow(2, resLayer) - 1 ,
+  //     pos[1] * Math.pow(2, resLayer) + 1
   //   ],
   //   white
   // );
   // drawBottomRightTriangle(
-  //   resolutionLayer + 1,
+  //   resLayer + 1,
   //   [
-  //     pos[0] * Math.pow(2, resolutionLayer) - 2 ,
-  //     pos[1] * Math.pow(2, resolutionLayer) + 1
+  //     pos[0] * Math.pow(2, resLayer) - 2 ,
+  //     pos[1] * Math.pow(2, resLayer) + 1
   //   ],
   //   white
   // );
 
 
   // } else {
-  //   console.log("drawing a black houndsooth at level " + resolutionLayer + " at [" + pos[0] + "," + pos[1] + "]");
+  //   console.log("drawing a black houndsooth at level " + resLayer + " at [" + pos[0] + "," + pos[1] + "]");
   // }
 
 // }
@@ -603,11 +603,11 @@ function convertBottomRightGridCell(i, j) {
   newTopLeftGrid[i*2+1][j*2+1] = bottomRightGrid[i][j];
 }
 
-function drawBottomRightTriangle(resolutionLayer, pos, white) {
+function drawBottomRightTriangle(resLayer, pos, white) {
   ctx.fillStyle = white ? "#fff" : "#000"
   ctx.strokeStyle = white ? "#fff" : "#000"
 
-  var resolution = Math.pow(2, resolutionLayer);
+  var resolution = Math.pow(2, resLayer);
   var unit = WIDTH / resolution;
   var topLeftX = pos[0] * unit;
   var topLeftY = pos[1] * unit;
@@ -621,11 +621,11 @@ function drawBottomRightTriangle(resolutionLayer, pos, white) {
   ctx.stroke();
 }
 
-function drawTopLeftTriangle(resolutionLayer, pos, white) {
+function drawTopLeftTriangle(resLayer, pos, white) {
   ctx.fillStyle = white ? "#fff" : "#000"
   ctx.strokeStyle = white ? "#fff" : "#000"
 
-  var resolution = Math.pow(2, resolutionLayer);
+  var resolution = Math.pow(2, resLayer);
   var unit = WIDTH / resolution;
   var topLeftX = pos[0] * unit;
   var topLeftY = pos[1] * unit;

@@ -1,16 +1,16 @@
-function mirrorpos(pos, resolutionLayer) {
+function mirrorpos(pos, resLayer) {
   var mirroredpos = [];
-  mirroredpos[0] = Math.pow(2, resolutionLayer) - pos[1] - 1;
-  mirroredpos[1] = Math.pow(2, resolutionLayer) - pos[0] - 1;
+  mirroredpos[0] = Math.pow(2, resLayer) - pos[1] - 1;
+  mirroredpos[1] = Math.pow(2, resLayer) - pos[0] - 1;
   return mirroredpos;
 };
 
-function drawPlainTriangle(resolutionLayer, pos, white) {
+function drawPlainTriangle(resLayer, pos, white) {
   ctx.fillStyle = white ? "#fff" : "#000"
 
   // "original" version in the top left half of the screen
 
-  var resolution = Math.pow(2, resolutionLayer);
+  var resolution = Math.pow(2, resLayer);
   var unit = WIDTH / resolution;
   var topLeftX = pos[0] * unit;
   var topLeftY = pos[1] * unit;
@@ -24,7 +24,7 @@ function drawPlainTriangle(resolutionLayer, pos, white) {
 
   // "mirrored" version in the bottom right half of the screen
 
-  var mirroredpos = mirrorpos(pos, resolutionLayer);
+  var mirroredpos = mirrorpos(pos, resLayer);
   var mirroredTopLeftX = mirroredpos[0] * unit;
   var mirroredTopLeftY = mirroredpos[1] * unit;
 
@@ -36,12 +36,12 @@ function drawPlainTriangle(resolutionLayer, pos, white) {
   ctx.fill();
 };
 
-function drawUnmirroredPlainTriangle(resolutionLayer, pos, white) {
+function drawUnmirroredPlainTriangle(resLayer, pos, white) {
   ctx.fillStyle = white ? "#fff" : "#000"
 
   // "original" version in the top left half of the screen
 
-  var resolution = Math.pow(2, resolutionLayer);
+  var resolution = Math.pow(2, resLayer);
   var unit = WIDTH / resolution;
   var topLeftX = pos[0] * unit;
   var topLeftY = pos[1] * unit;
@@ -54,12 +54,12 @@ function drawUnmirroredPlainTriangle(resolutionLayer, pos, white) {
   ctx.fill();
 };
 
-function drawInvertedPlainTriangle(resolutionLayer, pos, white) {
+function drawInvertedPlainTriangle(resLayer, pos, white) {
   ctx.fillStyle = white ? "#fff" : "#000"
 
   // "original" version in the top left half of the screen
 
-  var resolution = Math.pow(2, resolutionLayer);
+  var resolution = Math.pow(2, resLayer);
   var unit = WIDTH / resolution;
   var topLeftX = pos[0] * unit;
   var topLeftY = pos[1] * unit;
@@ -73,7 +73,7 @@ function drawInvertedPlainTriangle(resolutionLayer, pos, white) {
 
   // "mirrored" version in the bottom right half of the screen
 
-  var mirroredpos = mirrorpos(pos, resolutionLayer);
+  var mirroredpos = mirrorpos(pos, resLayer);
   var mirroredTopLeftX = mirroredpos[0] * unit;
   var mirroredTopLeftY = mirroredpos[1] * unit;
 
@@ -85,12 +85,12 @@ function drawInvertedPlainTriangle(resolutionLayer, pos, white) {
   ctx.fill();
 };
 
-// function drawOtherPlainTriangle(resolutionLayer, pos, white) {
+// function drawOtherPlainTriangle(resLayer, pos, white) {
 //   ctx.fillStyle = white ? "#fff" : "#000"
 //
 //   // "original" version in the top left half of the screen
 //
-//   var resolution = Math.pow(2, resolutionLayer);
+//   var resolution = Math.pow(2, resLayer);
 //   var unit = WIDTH / resolution;
 //   var topLeftX = pos[0] * unit;
 //   var topLeftY = pos[1] * unit;
@@ -105,8 +105,8 @@ function drawInvertedPlainTriangle(resolutionLayer, pos, white) {
 //   // "mirrored" version in the bottom right half of the screen
 //
 //   var mirroredpos = [];
-//   mirroredpos[0] = Math.pow(2, resolutionLayer) - pos[1] - 1;
-//   mirroredpos[1] = Math.pow(2, resolutionLayer) - pos[0] - 1;
+//   mirroredpos[0] = Math.pow(2, resLayer) - pos[1] - 1;
+//   mirroredpos[1] = Math.pow(2, resLayer) - pos[0] - 1;
 //   var mirroredTopLeftX = mirroredpos[0] * unit;
 //   var mirroredTopLeftY = mirroredpos[1] * unit;
 //
@@ -118,10 +118,10 @@ function drawInvertedPlainTriangle(resolutionLayer, pos, white) {
 //   ctx.fill();
 // };
 
-function drawSquare(resolutionLayer, pos, white) {
+function drawSquare(resLayer, pos, white) {
   ctx.fillStyle = white ? "#fff" : "#000"
 
-  var resolution = Math.pow(2, resolutionLayer);
+  var resolution = Math.pow(2, resLayer);
   var unit = WIDTH / resolution;
   var topLeftX = pos[0] * unit;
   var topLeftY = pos[1] * unit;
@@ -134,7 +134,7 @@ function drawSquare(resolutionLayer, pos, white) {
   ctx.closePath();
   ctx.fill();
 
-  var mirroredpos = mirrorpos(pos, resolutionLayer);
+  var mirroredpos = mirrorpos(pos, resLayer);
   var mirroredTopLeftX = mirroredpos[0] * unit;
   var mirroredTopLeftY = mirroredpos[1] * unit;
 
@@ -148,10 +148,10 @@ function drawSquare(resolutionLayer, pos, white) {
 };
 
 
-function drawUnmirroredSquare(resolutionLayer, pos, white) {
+function drawUnmirroredSquare(resLayer, pos, white) {
   ctx.fillStyle = white ? "#fff" : "#000"
 
-  var resolution = Math.pow(2, resolutionLayer);
+  var resolution = Math.pow(2, resLayer);
   var unit = WIDTH / resolution;
   var topLeftX = pos[0] * unit;
   var topLeftY = pos[1] * unit;
@@ -165,12 +165,12 @@ function drawUnmirroredSquare(resolutionLayer, pos, white) {
   ctx.fill();
 };
 
-function drawPlainTriangleUnmirrored(resolutionLayer, pos, white) {
+function drawPlainTriangleUnmirrored(resLayer, pos, white) {
   ctx.fillStyle = white ? "#fff" : "#000"
 
   // "original" version in the top left half of the screen
 
-  var resolution = Math.pow(2, resolutionLayer);
+  var resolution = Math.pow(2, resLayer);
   var unit = WIDTH / resolution;
   var topLeftX = pos[0] * unit;
   var topLeftY = pos[1] * unit;
@@ -183,42 +183,42 @@ function drawPlainTriangleUnmirrored(resolutionLayer, pos, white) {
   ctx.fill();
 };
 
-// function drawOtherRecursiveTriangle(resolutionLayer, pos, white) {
-//   if (resolutionLayer > SHRINKING_DEPTH) {
+// function drawOtherRecursiveTriangle(resLayer, pos, white) {
+//   if (resLayer > SHRINKING_DEPTH) {
 //     console.log("TOO FAR");
 //     return;
 //   }
-//   console.log("rL: " + resolutionLayer + ", pos: [" + pos[0] + ", " + pos[1] + "], w?: " + white);
-//   drawOtherPlainTriangle(resolutionLayer, pos, white);
+//   console.log("rL: " + resLayer + ", pos: [" + pos[0] + ", " + pos[1] + "], w?: " + white);
+//   drawOtherPlainTriangle(resLayer, pos, white);
 //
 // }
 
-function drawInvertedRecursiveTriangle(resolutionLayer, pos, white) {
-  if (resolutionLayer > SHRINKING_DEPTH) {
+function drawInvertedRecursiveTriangle(resLayer, pos, white) {
+  if (resLayer > SHRINKING_DEPTH) {
     console.log("TOO FAR");
     return;
   }
-  console.log("rL: " + resolutionLayer + ", pos: [" + pos[0] + ", " + pos[1] + "], w?: " + white);
-  drawInvertedPlainTriangle(resolutionLayer, pos, white);
+  console.log("rL: " + resLayer + ", pos: [" + pos[0] + ", " + pos[1] + "], w?: " + white);
+  drawInvertedPlainTriangle(resLayer, pos, white);
 
 }
 
-function drawRecursiveTriangle(resolutionLayer, pos, white) {
-  if (resolutionLayer > SHRINKING_DEPTH) {
+function drawRecursiveTriangle(resLayer, pos, white) {
+  if (resLayer > SHRINKING_DEPTH) {
     console.log("TOO FAR");
     return;
   }
-  console.log("rL: " + resolutionLayer + ", pos: [" + pos[0] + ", " + pos[1] + "], w?: " + white);
+  console.log("rL: " + resLayer + ", pos: [" + pos[0] + ", " + pos[1] + "], w?: " + white);
 
   //background (maybe shrinkable?)
-  // drawSquare(resolutionLayer, pos, !white);
+  // drawSquare(resLayer, pos, !white);
 
   //main triangle (maybe deletable?)
-  drawPlainTriangle(resolutionLayer, pos, white);
+  drawPlainTriangle(resLayer, pos, white);
 
 //   //getting the recursions on either side of the flipped teeth going
 //   drawRecursiveTriangle(
-//     resolutionLayer + 1,
+//     resLayer + 1,
 //     [
 //       Math.pow(2, 1) * pos[0],
 //       Math.pow(2, 1) * pos[1] + 1
@@ -226,7 +226,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //     white
 //   );
 //   drawRecursiveTriangle(
-//     resolutionLayer + 2,
+//     resLayer + 2,
 //     [
 //       Math.pow(2, 2) * pos[0] + 3,
 //       Math.pow(2, 2) * pos[1]
@@ -238,7 +238,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //
 //   // // cores of the two flipped houndsteeth
 //   drawSquare(
-//     resolutionLayer + 3,
+//     resLayer + 3,
 //     [
 //       Math.pow(2, 3) * pos[0] + 5,
 //       Math.pow(2, 3) * pos[1] + 3
@@ -246,7 +246,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //     !white
 //   );
 //   drawSquare(
-//     resolutionLayer + 3,
+//     resLayer + 3,
 //     [
 //       Math.pow(2, 3) * pos[0] + 4,
 //       Math.pow(2, 3) * pos[1] + 2
@@ -256,7 +256,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //
 //   //background for shared roots
 //   // drawSquare(
-//   //   resolutionLayer + 3,
+//   //   resLayer + 3,
 //   //   [
 //   //     Math.pow(2, 3) * pos[0] + 4,
 //   //     Math.pow(2, 3) * pos[1] + 3
@@ -267,7 +267,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //   //
 //   // // outside of the roots
 //   drawRecursiveTriangle(
-//     resolutionLayer + 3,
+//     resLayer + 3,
 //     [
 //       Math.pow(2, 3) * pos[0] + 3,
 //       Math.pow(2, 3) * pos[1] + 2
@@ -275,7 +275,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //     white
 //   );
 //   drawRecursiveTriangle(
-//     resolutionLayer + 3,
+//     resLayer + 3,
 //     [
 //       Math.pow(2, 3) * pos[0] + 5,
 //       Math.pow(2, 3) * pos[1] + 4
@@ -283,7 +283,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //     white
 //   );
 //   drawRecursiveTriangle(
-//     resolutionLayer + 3,
+//     resLayer + 3,
 //     [
 //       Math.pow(2, 3) * pos[0] + 4,
 //       Math.pow(2, 3) * pos[1] + 3
@@ -293,7 +293,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //
 //   //inside of roots
 //   drawRecursiveTriangle(
-//     resolutionLayer + 4,
+//     resLayer + 4,
 //     [
 //       Math.pow(2, 4) * pos[0] + 7,
 //       Math.pow(2, 4) * pos[1] + 5
@@ -301,7 +301,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //     !white
 //   );
 //   drawRecursiveTriangle(
-//     resolutionLayer + 4,
+//     resLayer + 4,
 //     [
 //       Math.pow(2, 4) * pos[0] + 8,
 //       Math.pow(2, 4) * pos[1] + 6
@@ -309,7 +309,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //     white
 //   );
 //   drawRecursiveTriangle(
-//     resolutionLayer + 4,
+//     resLayer + 4,
 //     [
 //       Math.pow(2, 4) * pos[0] + 9,
 //       Math.pow(2, 4) * pos[1] + 7
@@ -317,7 +317,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //     white
 //   );
 //   drawRecursiveTriangle(
-//     resolutionLayer + 4,
+//     resLayer + 4,
 //     [
 //       Math.pow(2, 4) * pos[0] + 10,
 //       Math.pow(2, 4) * pos[1] + 8
@@ -327,7 +327,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //
 //   //cusps
 //   drawRecursiveTriangle(
-//     resolutionLayer + 4,
+//     resLayer + 4,
 //     [
 //       Math.pow(2, 4) * pos[0] + 9,
 //       Math.pow(2, 4) * pos[1] + 3
@@ -335,7 +335,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //     white
 //   );
 //   drawRecursiveTriangle(
-//     resolutionLayer + 4,
+//     resLayer + 4,
 //     [
 //       Math.pow(2, 4) * pos[0] + 10,
 //       Math.pow(2, 4) * pos[1] + 4
@@ -343,7 +343,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //     !white
 //   );
 //   drawRecursiveTriangle(
-//     resolutionLayer + 4,
+//     resLayer + 4,
 //     [
 //       Math.pow(2, 4) * pos[0] + 11,
 //       Math.pow(2, 4) * pos[1] + 5
@@ -351,7 +351,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //     !white
 //   );
 //   drawRecursiveTriangle(
-//     resolutionLayer + 4,
+//     resLayer + 4,
 //     [
 //       Math.pow(2, 4) * pos[0] + 12,
 //       Math.pow(2, 4) * pos[1] + 6
@@ -361,22 +361,22 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 }
 //
 // //THIS ONE HAS TO HAVE THE SQUARE DOWN A BIT
-// function drawShiftedRecursiveTriangle(resolutionLayer, pos, white) {
-//   if (resolutionLayer > SHRINKING_DEPTH) {
+// function drawShiftedRecursiveTriangle(resLayer, pos, white) {
+//   if (resLayer > SHRINKING_DEPTH) {
 //     console.log("TOO FAR");
 //     return;
 //   }
-//   console.log("rL: " + resolutionLayer + ", pos: [" + pos[0] + ", " + pos[1] + "], w?: " + white);
+//   console.log("rL: " + resLayer + ", pos: [" + pos[0] + ", " + pos[1] + "], w?: " + white);
 //
 //   //background (maybe shrinkable?)
-//   // drawSquare(resolutionLayer, pos, !white);
+//   // drawSquare(resLayer, pos, !white);
 //
 //   //main triangle (maybe deletable?)
-//   drawPlainTriangle(resolutionLayer, pos, white);
+//   drawPlainTriangle(resLayer, pos, white);
 //
 //   //getting the recursions on either side of the flipped teeth going
 //   drawRecursiveTriangle(
-//     resolutionLayer + 1,
+//     resLayer + 1,
 //     [
 //       Math.pow(2, 1) * pos[0],
 //       Math.pow(2, 1) * pos[1] + 1
@@ -384,7 +384,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //     white
 //   );
 //   drawRecursiveTriangle(
-//     resolutionLayer + 2,
+//     resLayer + 2,
 //     [
 //       Math.pow(2, 2) * pos[0] + 3,
 //       Math.pow(2, 2) * pos[1]
@@ -396,7 +396,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //
 //   // // cores of the two flipped houndsteeth
 //   drawSquare(
-//     resolutionLayer + 3,
+//     resLayer + 3,
 //     [
 //       Math.pow(2, 3) * pos[0] + 5,
 //       Math.pow(2, 3) * pos[1] + 3
@@ -404,7 +404,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //     !white
 //   );
 //   drawSquare(
-//     resolutionLayer + 3,
+//     resLayer + 3,
 //     [
 //       Math.pow(2, 3) * pos[0] + 4,
 //       Math.pow(2, 3) * pos[1] + 2
@@ -414,7 +414,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //
 //   //background for shared roots
 //   drawSquare(
-//     resolutionLayer + 3,
+//     resLayer + 3,
 //     [
 //       Math.pow(2, 3) * pos[0] + 4,
 //       Math.pow(2, 3) * pos[1] + 3
@@ -425,7 +425,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //   //
 //   // // outside of the roots
 //   drawRecursiveTriangle(
-//     resolutionLayer + 3,
+//     resLayer + 3,
 //     [
 //       Math.pow(2, 3) * pos[0] + 3,
 //       Math.pow(2, 3) * pos[1] + 2
@@ -433,7 +433,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //     white
 //   );
 //   drawRecursiveTriangle(
-//     resolutionLayer + 3,
+//     resLayer + 3,
 //     [
 //       Math.pow(2, 3) * pos[0] + 5,
 //       Math.pow(2, 3) * pos[1] + 4
@@ -441,7 +441,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //     white
 //   );
 //   drawRecursiveTriangle(
-//     resolutionLayer + 3,
+//     resLayer + 3,
 //     [
 //       Math.pow(2, 3) * pos[0] + 4,
 //       Math.pow(2, 3) * pos[1] + 3
@@ -451,7 +451,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //
 //   //inside of roots
 //   drawRecursiveTriangle(
-//     resolutionLayer + 4,
+//     resLayer + 4,
 //     [
 //       Math.pow(2, 4) * pos[0] + 7,
 //       Math.pow(2, 4) * pos[1] + 5
@@ -459,7 +459,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //     !white
 //   );
 //   drawRecursiveTriangle(
-//     resolutionLayer + 4,
+//     resLayer + 4,
 //     [
 //       Math.pow(2, 4) * pos[0] + 8,
 //       Math.pow(2, 4) * pos[1] + 6
@@ -467,7 +467,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //     white
 //   );
 //   drawRecursiveTriangle(
-//     resolutionLayer + 4,
+//     resLayer + 4,
 //     [
 //       Math.pow(2, 4) * pos[0] + 9,
 //       Math.pow(2, 4) * pos[1] + 7
@@ -475,7 +475,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //     white
 //   );
 //   drawRecursiveTriangle(
-//     resolutionLayer + 4,
+//     resLayer + 4,
 //     [
 //       Math.pow(2, 4) * pos[0] + 10,
 //       Math.pow(2, 4) * pos[1] + 8
@@ -485,7 +485,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //
 //   //cusps
 //   drawRecursiveTriangle(
-//     resolutionLayer + 4,
+//     resLayer + 4,
 //     [
 //       Math.pow(2, 4) * pos[0] + 9,
 //       Math.pow(2, 4) * pos[1] + 3
@@ -493,7 +493,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //     white
 //   );
 //   drawRecursiveTriangle(
-//     resolutionLayer + 4,
+//     resLayer + 4,
 //     [
 //       Math.pow(2, 4) * pos[0] + 10,
 //       Math.pow(2, 4) * pos[1] + 4
@@ -501,7 +501,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //     !white
 //   );
 //   drawRecursiveTriangle(
-//     resolutionLayer + 4,
+//     resLayer + 4,
 //     [
 //       Math.pow(2, 4) * pos[0] + 11,
 //       Math.pow(2, 4) * pos[1] + 5
@@ -509,7 +509,7 @@ function drawRecursiveTriangle(resolutionLayer, pos, white) {
 //     !white
 //   );
 //   drawRecursiveTriangle(
-//     resolutionLayer + 4,
+//     resLayer + 4,
 //     [
 //       Math.pow(2, 4) * pos[0] + 12,
 //       Math.pow(2, 4) * pos[1] + 6

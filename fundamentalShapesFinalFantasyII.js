@@ -1,7 +1,7 @@
-function drawPlainTriangle(resolutionLayer, pos, white) {
+function drawPlainTriangle(resLayer, pos, white) {
   ctx.fillStyle = white ? "#fff" : "#000"
 
-  var resolution = Math.pow(2, resolutionLayer);
+  var resolution = Math.pow(2, resLayer);
   var unit = WIDTH / resolution;
   var topLeftX = pos[0] * unit;
   var topLeftY = pos[1] * unit;
@@ -14,10 +14,10 @@ function drawPlainTriangle(resolutionLayer, pos, white) {
   ctx.fill();
 };
 
-function drawMirroredTriangle(resolutionLayer, pos, white) {
+function drawMirroredTriangle(resLayer, pos, white) {
   ctx.fillStyle = white ? "#fff" : "#000"
 
-  var resolution = Math.pow(2, resolutionLayer);
+  var resolution = Math.pow(2, resLayer);
   var unit = WIDTH / resolution;
   var topLeftX = pos[0] * unit;
   var topLeftY = pos[1] * unit;
@@ -30,10 +30,10 @@ function drawMirroredTriangle(resolutionLayer, pos, white) {
   ctx.fill();
 };
 
-function drawSquare(resolutionLayer, pos, white) {
+function drawSquare(resLayer, pos, white) {
   ctx.fillStyle = white ? "#fff" : "#000"
 
-  var resolution = Math.pow(2, resolutionLayer);
+  var resolution = Math.pow(2, resLayer);
   var unit = WIDTH / resolution;
   var topLeftX = pos[0] * unit;
   var topLeftY = pos[1] * unit;
@@ -50,9 +50,9 @@ function drawSquare(resolutionLayer, pos, white) {
 CUSP_EDGE_CONSTANTS = [2, 1, 0, 1, 3, 0];
 ROOT_EDGE_CONSTANTS = [1, 2, 1, 0, 0, 3];
 
-function drawRecursiveEdge(resolutionLayer, pos, white, vertical, mirrored, resolutionLayerToMirrorAcross) {
-  if (resolutionLayer > RESOLUTION_DEPTH) { return; }
-  drawPlainTriangle(resolutionLayer, pos, white);
+function drawRecursiveEdge(resLayer, pos, white, vertical, mirrored, resLayerToMirrorAcross) {
+  if (resLayer > RESOLUTION_DEPTH) { return; }
+
   var pos_constants = vertical ? ROOT_EDGE_CONSTANTS : CUSP_EDGE_CONSTANTS;
 
   //the as-above-so-below square
@@ -69,42 +69,47 @@ function drawRecursiveEdge(resolutionLayer, pos, white, vertical, mirrored, reso
     Math.pow(2, 2) * pos[1] + pos_constants[5]
   ];
 
-  if (mirrored) {
-    entireThingPos = mirrorPos(entireThingPos, resolutionLayerToMirrorAcross);
-    biggerEdgePos = mirrorPos(biggerEdgePos, resolutionLayerToMirrorAcross);
-    smallerEdgePos = mirrorPos(smallerEdgePos, resolutionLayerToMirrorAcross);
+  if (mirrored == true) {
+    console.log(resLayerToMirrorAcross);
+    drawMirroredTriangle(resLayer, pos, white);
+    entireThingPos = mirrorPos(entireThingPos, resLayer + 2, resLayerToMirrorAcross);
+    biggerEdgePos = mirrorPos(biggerEdgePos, resLayer + 1, resLayerToMirrorAcross);
+    smallerEdgePos = mirrorPos(smallerEdgePos, resLayer + 2, resLayerToMirrorAcross);
+  } else {
+    drawPlainTriangle(resLayer, pos, white);
+    console.log("sometimes it doesn't go in here");
   }
 
   drawEntireThing(
-    resolutionLayer + 2,
+    resLayer + 2,
     entireThingPos,
     white
-  )
+  );
 
   //getting the recursion going on remaining pieces of the edge
 
   drawRecursiveEdge(
-    resolutionLayer + 1,
+    resLayer + 1,
     biggerEdgePos,
     white,
     vertical,
-    mirrored, 
-    resolutionLayerToMirrorAcross
+    mirrored,
+    resLayerToMirrorAcross
   );
 
   drawRecursiveEdge(
-    resolutionLayer + 2,
+    resLayer + 2,
     smallerEdgePos,
     white,
     vertical,
     mirrored,
-    resolutionLayerToMirrorAcross
+    resLayerToMirrorAcross
   );
 };
 
-// function drawMirroredRecursiveEdge(resolutionLayer, pos, white, vertical) {
-//   if (resolutionLayer > RESOLUTION_DEPTH) { return; }
-//   drawMirroredTriangle(resolutionLayer, pos, white);
+// function drawMirroredRecursiveEdge(resLayer, pos, white, vertical) {
+//   if (resLayer > RESOLUTION_DEPTH) { return; }
+//   drawMirroredTriangle(resLayer, pos, white);
 //   var pos_constants = vertical ? ROOT_EDGE_CONSTANTS : CUSP_EDGE_CONSTANTS;
 //
 //   //the actual edge part of this...

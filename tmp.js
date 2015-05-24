@@ -24,9 +24,9 @@
 //   drawBottomRightTriangle(i + 1, [Math.pow(2, i) - 1, Math.pow(2, i) - 1], i % 2 == 0)
 // }
 //
-// function drawRecursiveBottomRightTriangle(resolutionLayer, pos, white) {
+// function drawRecursiveBottomRightTriangle(resLayer, pos, white) {
 //   for (i = 0; i < RECURSIVE_DEPTH; i++) {
-//     drawBottomRightTriangle(i + resolutionLayer,
+//     drawBottomRightTriangle(i + resLayer,
 //       [Math.pow(2, i - 1) - 1, Math.pow(2, i - 1) - 1],
 //       i % 2 == white ? 0 : 1)
 //   }
@@ -34,24 +34,24 @@
 
 // scratchpad for final implementation of mirror imaging
 //
-// function mirrorImage(fn, resolutionLayer, pos, white) {
+// function mirrorImage(fn, resLayer, pos, white) {
 //   console.log(fn);
 //   pos =
-//   fn(resolutionLayer, pos, white);
+//   fn(resLayer, pos, white);
 // }
 //
 // function mirrored(pos) {
-//   return Math.pow(2, resolutionLayer) - pos;
+//   return Math.pow(2, resLayer) - pos;
 // }
 //
-// mirrorImage(drawTopLeftTriangle, resolutionLayer, pos, white);
+// mirrorImage(drawTopLeftTriangle, resLayer, pos, white);
 
 
 // scratchpad for coming up with final implementation of truly recursive stuff
 //
 // for (var j = 0; j < RECURSIVE_DEPTH; j++) {
 //   drawBottomRightTriangle(
-//     i + resolutionLayer + 1 + j,
+//     i + resLayer + 1 + j,
 //     [
 //       (pos[0] + 1 - Math.pow(2, j)) * Math.pow(2, i) - 1 ,
 //       (pos[1] + 1) * Math.pow(2, i) - 1
@@ -69,10 +69,10 @@
 
 // discarded unnecessary trapezoid function
 //
-// function drawBottomRightTrapezoid(resolutionLayer, pos, white) {
+// function drawBottomRightTrapezoid(resLayer, pos, white) {
 //   for (var i = 0; i < 2; i++) {
 //     drawBottomRightTriangle(
-//       i + resolutionLayer,
+//       i + resLayer,
 //       [
 //         (pos[0] + 1) * Math.pow(2, i) - 1 ,
 //         (pos[1] + 1) * Math.pow(2, i) - 1
@@ -107,21 +107,21 @@
 //
 //   for (i = 0; i < RECURSIVE_DEPTH; i++) {
 //     drawRecursiveBottomRightTriangle(
-//       resolutionLayer + i + 1,
+//       resLayer + i + 1,
 //       [
-//         resolutionLayer * pos[0] + 1,
-//         resolutionLayer * pos[0] - 1,
+//         resLayer * pos[0] + 1,
+//         resLayer * pos[0] - 1,
 //       ],
 //       white);
 //   }
 
 // scratchpad for top left vs bottom right triangles
 //
-// function drawMirror(resolutionLayer, pos, white) {
+// function drawMirror(resLayer, pos, white) {
 //   var mirroredpos = [];
-//   mirroredpos[0] = Math.pow(2, resolutionLayer) - pos[1] - 1;
-//   mirroredpos[1] = Math.pow(2, resolutionLayer) - pos[0] - 1;
-//   drawTriangle(!topLeft, resolutionLayer, mirroredpos, white, false);
+//   mirroredpos[0] = Math.pow(2, resLayer) - pos[1] - 1;
+//   mirroredpos[1] = Math.pow(2, resLayer) - pos[0] - 1;
+//   drawTriangle(!topLeft, resLayer, mirroredpos, white, false);
 // }
 //
 // function traceTriangleCoords(topLeft, topLeftX, topLeftY, unit) {
@@ -135,11 +135,11 @@
 //   ctx.lineTo(topLeftX, topLeftY + unit );
 // }
 //
-// function drawTopLeftTriangle(resolutionLayer, pos, white, drawMirror) {
+// function drawTopLeftTriangle(resLayer, pos, white, drawMirror) {
 //   drawMirror = typeof drawMirror !== 'undefined' ? drawMirror : true;
 //   ctx.fillStyle = white ? "#fff" : "#000"
 //
-//   var resolution = Math.pow(2, resolutionLayer);
+//   var resolution = Math.pow(2, resLayer);
 //   var unit = WIDTH / resolution;
 //   var topLeftX = pos[0] * unit;
 //   var topLeftY = pos[1] * unit;
@@ -153,17 +153,17 @@
 //   ctx.fill();
 //   if (drawMirror) {
 //     var mirroredpos = [];
-//     mirroredpos[0] = Math.pow(2, resolutionLayer) - pos[1] - 1;
-//     mirroredpos[1] = Math.pow(2, resolutionLayer) - pos[0] - 1;
-//     drawBottomRightTriangle(resolutionLayer, mirroredpos, white, false);
+//     mirroredpos[0] = Math.pow(2, resLayer) - pos[1] - 1;
+//     mirroredpos[1] = Math.pow(2, resLayer) - pos[0] - 1;
+//     drawBottomRightTriangle(resLayer, mirroredpos, white, false);
 //   }
 // }
 //
-// function drawBottomRightTriangle(resolutionLayer, pos, white, drawMirror) {
+// function drawBottomRightTriangle(resLayer, pos, white, drawMirror) {
 //   drawMirror = typeof drawMirror !== 'undefined' ? drawMirror : true;
 //   ctx.fillStyle = white ? "#fff" : "#000"
 //
-//   var resolution = Math.pow(2, resolutionLayer);
+//   var resolution = Math.pow(2, resLayer);
 //   var unit = WIDTH / resolution;
 //   var topLeftX = pos[0] * unit;
 //   var topLeftY = pos[1] * unit;
@@ -178,16 +178,16 @@
 //
 //   if (drawMirror) {
 //     var mirroredpos = [];
-//     mirroredpos[0] = Math.pow(2, resolutionLayer) - pos[1] - 1;
-//     mirroredpos[1] = Math.pow(2, resolutionLayer) - pos[0] - 1;
-//     drawTopLeftTriangle(resolutionLayer, mirroredpos, white, false);
+//     mirroredpos[0] = Math.pow(2, resLayer) - pos[1] - 1;
+//     mirroredpos[1] = Math.pow(2, resLayer) - pos[0] - 1;
+//     drawTopLeftTriangle(resLayer, mirroredpos, white, false);
 //   }
 // }
 
 // scratchpad for dopple recursive top of tooth
 //
 // drawRecursiveTriangle(
-//   i + resolutionLayer + 2,
+//   i + resLayer + 2,
 //   [
 //     (pos[0] + 1) * Math.pow(2, i + 2) - 1 ,
 //     (pos[1] + .5) * Math.pow(2, i + 2) - 1
@@ -195,7 +195,7 @@
 //   i % 2 == white ? 1 : 0
 // );
 // drawRecursiveTriangle(
-//   i + resolutionLayer + 3,
+//   i + resLayer + 3,
 //   [
 //     (pos[0] + 1) * Math.pow(2, i + 3) - 1 ,
 //     (pos[1] + .25) * Math.pow(2, i + 3) - 1
@@ -203,7 +203,7 @@
 //   i % 2 == white ? 1 : 0
 // );
 // drawRecursiveTriangle(
-//   i + resolutionLayer + 4,
+//   i + resLayer + 4,
 //   [
 //     (pos[0] + 1) * Math.pow(2, i + 4) - 1 ,
 //     (pos[1] + .125) * Math.pow(2, i + 4) - 1
@@ -211,7 +211,7 @@
 //   i % 2 == white ? 1 : 0
 // );
 // drawRecursiveTriangle(
-//   i + resolutionLayer + 5,
+//   i + resLayer + 5,
 //   [
 //     (pos[0] + 1) * Math.pow(2, i + 5) - 1 ,
 //     (pos[1] + .0625) * Math.pow(2, i + 5) - 1

@@ -1,8 +1,8 @@
-function drawPlainTriangle(resolutionLayer, pos, white) {
-  drawTriangle(resolutionLayer, pos, white)
+function drawPlainTriangle(resLayer, pos, white) {
+  drawTriangle(resLayer, pos, white)
 }
 
-function drawTriangle(resolutionLayer, pos, white, subTriangle) {
+function drawTriangle(resLayer, pos, white, subTriangle) {
 
   // set color for main triangles
 
@@ -10,7 +10,7 @@ function drawTriangle(resolutionLayer, pos, white, subTriangle) {
 
   // "original" version in the top left half of the screen
 
-  var resolution = Math.pow(2, resolutionLayer);
+  var resolution = Math.pow(2, resLayer);
   var unit = WIDTH / resolution;
   var topLeftX = pos[0] * unit;
   var topLeftY = pos[1] * unit;
@@ -25,8 +25,8 @@ function drawTriangle(resolutionLayer, pos, white, subTriangle) {
   // "mirrored" version in the bottom right half of the screen
 
   var mirroredpos = [];
-  mirroredpos[0] = Math.pow(2, resolutionLayer) - pos[1] - 1;
-  mirroredpos[1] = Math.pow(2, resolutionLayer) - pos[0] - 1;
+  mirroredpos[0] = Math.pow(2, resLayer) - pos[1] - 1;
+  mirroredpos[1] = Math.pow(2, resLayer) - pos[0] - 1;
   var mirroredTopLeftX = mirroredpos[0] * unit;
   var mirroredTopLeftY = mirroredpos[1] * unit;
 
@@ -64,10 +64,10 @@ function drawTriangle(resolutionLayer, pos, white, subTriangle) {
   // subTriangle = typeof subTriangle !== 'undefined' ? subTriangle : false;
   // if (!subTriangle) {
   //   drawTriangle(
-  //     resolutionLayer + 2,
+  //     resLayer + 2,
   //     [
-  //       pos[0] * Math.pow(2, resolutionLayer) + 1,
-  //       pos[1] * Math.pow(2, resolutionLayer) + 2
+  //       pos[0] * Math.pow(2, resLayer) + 1,
+  //       pos[1] * Math.pow(2, resLayer) + 2
   //     ],
   //     !white,
   //     true
@@ -75,10 +75,10 @@ function drawTriangle(resolutionLayer, pos, white, subTriangle) {
   // }
 };
 
-function drawSquare(resolutionLayer, pos, white) {
+function drawSquare(resLayer, pos, white) {
   ctx.fillStyle = white ? "#fff" : "#000"
 
-  var resolution = Math.pow(2, resolutionLayer);
+  var resolution = Math.pow(2, resLayer);
   var unit = WIDTH / resolution;
   var topLeftX = pos[0] * unit;
   var topLeftY = pos[1] * unit;
@@ -92,8 +92,8 @@ function drawSquare(resolutionLayer, pos, white) {
   ctx.fill();
 
   var mirroredpos = [];
-  mirroredpos[0] = Math.pow(2, resolutionLayer) - pos[1] - 1;
-  mirroredpos[1] = Math.pow(2, resolutionLayer) - pos[0] - 1;
+  mirroredpos[0] = Math.pow(2, resLayer) - pos[1] - 1;
+  mirroredpos[1] = Math.pow(2, resLayer) - pos[0] - 1;
   var mirroredTopLeftX = mirroredpos[0] * unit;
   var mirroredTopLeftY = mirroredpos[1] * unit;
 

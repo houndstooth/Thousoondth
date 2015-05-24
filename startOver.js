@@ -8,7 +8,7 @@ ctx.lineWidth = 1;
 
 RECURSIVE_DEPTH = 1;
 
-function drawHoundstooth(resolutionLayer, pos, white, iteration) {
+function drawHoundstooth(resLayer, pos, white, iteration) {
 
   // set color for main triangles
 
@@ -16,7 +16,7 @@ function drawHoundstooth(resolutionLayer, pos, white, iteration) {
 
   // "original" version in the top left half of the screen
 
-  var resolution = Math.pow(2, resolutionLayer);
+  var resolution = Math.pow(2, resLayer);
   var unit = WIDTH / resolution;
   var topLeftX = pos[0] * unit;
   var topLeftY = pos[1] * unit;
@@ -52,7 +52,7 @@ function drawHoundstooth(resolutionLayer, pos, white, iteration) {
     //RELATIVE TO [8, 4]
 
     drawHoundstooth(
-      resolutionLayer + 2,
+      resLayer + 2,
       [
         newpos[0] + 3,
         newpos[1] - 1
@@ -61,7 +61,7 @@ function drawHoundstooth(resolutionLayer, pos, white, iteration) {
       iteration + 1
     );
     drawHoundstooth(
-      resolutionLayer + 2,
+      resLayer + 2,
       [
         newpos[0] + 4,
         newpos[1] - 2
@@ -71,7 +71,7 @@ function drawHoundstooth(resolutionLayer, pos, white, iteration) {
     );
 
     drawHoundstooth(
-      resolutionLayer + 2,
+      resLayer + 2,
       [
         newpos[0] - 3,
         newpos[1] + 3
@@ -80,7 +80,7 @@ function drawHoundstooth(resolutionLayer, pos, white, iteration) {
       iteration + 1
     );
     drawHoundstooth(
-      resolutionLayer + 2,
+      resLayer + 2,
       [
         newpos[0] - 4,
         newpos[1] + 4
@@ -90,7 +90,7 @@ function drawHoundstooth(resolutionLayer, pos, white, iteration) {
     );
 
     drawHoundstooth(
-      resolutionLayer + 2,
+      resLayer + 2,
       [
         newpos[0] + 1,
         newpos[1] + 3
@@ -99,7 +99,7 @@ function drawHoundstooth(resolutionLayer, pos, white, iteration) {
       iteration + 1
     );
     drawHoundstooth(
-      resolutionLayer + 2,
+      resLayer + 2,
       [
         newpos[0] ,
         newpos[1] + 4
@@ -109,7 +109,7 @@ function drawHoundstooth(resolutionLayer, pos, white, iteration) {
     );
 
     drawHoundstooth(
-      resolutionLayer + 2,
+      resLayer + 2,
       [
         newpos[0] + 3,
         newpos[1] + 3
@@ -118,7 +118,7 @@ function drawHoundstooth(resolutionLayer, pos, white, iteration) {
       iteration + 1
     );
     drawHoundstooth(
-      resolutionLayer + 2,
+      resLayer + 2,
       [
         newpos[0] + 4,
         newpos[1] + 2
@@ -128,17 +128,17 @@ function drawHoundstooth(resolutionLayer, pos, white, iteration) {
     );
 
 
-    // drawHoundstooth(resolutionLayer + 2, [11, 3], white, iteration + 1);
-    // drawHoundstooth(resolutionLayer + 2, [12, 2], !white, iteration + 1);
+    // drawHoundstooth(resLayer + 2, [11, 3], white, iteration + 1);
+    // drawHoundstooth(resLayer + 2, [12, 2], !white, iteration + 1);
 
-    // drawHoundstooth(resolutionLayer + 2, [5, 7], white, iteration + 1);
-    // drawHoundstooth(resolutionLayer + 2, [4, 8], !white, iteration + 1);
+    // drawHoundstooth(resLayer + 2, [5, 7], white, iteration + 1);
+    // drawHoundstooth(resLayer + 2, [4, 8], !white, iteration + 1);
 
-    // drawHoundstooth(resolutionLayer + 2, [9, 7], white, iteration + 1);
-    // drawHoundstooth(resolutionLayer + 2, [8, 8], !white, iteration + 1);
+    // drawHoundstooth(resLayer + 2, [9, 7], white, iteration + 1);
+    // drawHoundstooth(resLayer + 2, [8, 8], !white, iteration + 1);
 
-    // drawHoundstooth(resolutionLayer + 2, [11, 7], white, iteration + 1);
-    // drawHoundstooth(resolutionLayer + 2, [12, 6], !white, iteration + 1);
+    // drawHoundstooth(resLayer + 2, [11, 7], white, iteration + 1);
+    // drawHoundstooth(resLayer + 2, [12, 6], !white, iteration + 1);
   }
 };
 
@@ -218,11 +218,11 @@ drawHoundstooth(2, [2, 1], false, 0);
 
 
 
-// drawHoundstooth(resolutionLayer + 2,
-//   [ ( pos[0] + 1 ) * Math.pow(2, resolutionLayer) - 1,
-//     pos[1] * Math.pow(2, resolutionLayer) - 1 ],
+// drawHoundstooth(resLayer + 2,
+//   [ ( pos[0] + 1 ) * Math.pow(2, resLayer) - 1,
+//     pos[1] * Math.pow(2, resLayer) - 1 ],
 //   white, iteration + 1);
-// drawHoundstooth(resolutionLayer + 2,
-//   [ pos[0] * Math.pow(2, resolutionLayer) + 4,
-//     pos[1] * Math.pow(2, resolutionLayer) - 2 ],
+// drawHoundstooth(resLayer + 2,
+//   [ pos[0] * Math.pow(2, resLayer) + 4,
+//     pos[1] * Math.pow(2, resLayer) - 2 ],
 //   !white, iteration + 1);
